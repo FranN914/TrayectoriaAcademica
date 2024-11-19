@@ -94,12 +94,15 @@ for col in X_train:
 # Relleno valores faltantes (NaN) de X_train con 0
 for col in X_train:
     X_train.loc[:, col] = X_train[col].fillna(0)
+    X_test.loc[:, col] = X_test[col].fillna(0)
 
 # Convierto las columnas con datos numéricos almacenados como texto
 y_train = pd.to_numeric(y_train, errors='coerce')
+y_test = pd.to_numeric(y_test, errors='coerce')
 
 # Relleno valores faltantes (NaN) de y_train con 0
 y_train = y_train.fillna(0)
+y_test = y_test.fillna(0)
 
 # Crear y entrenar el modelo
 modelo = LinearRegression()
@@ -108,9 +111,9 @@ modelo.fit(X_train, y_train)
 # Predecir
 y_pred = modelo.predict(X_test)
 
-# # Evaluar
-# mae = mean_absolute_error(y_test, y_pred)
-# mse = mean_squared_error(y_test, y_pred)
-# r2 = r2_score(y_test, y_pred)
-#
-# print(f"MAE: {mae}, MSE: {mse}, R²: {r2}")
+# Evaluar
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"MAE: {mae}, MSE: {mse}, R²: {r2}")
