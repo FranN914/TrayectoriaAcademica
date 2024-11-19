@@ -1,6 +1,7 @@
 import CSVReader as csvReader
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
@@ -53,38 +54,60 @@ y = datos_entrenamiento['nota']
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# print(X_train.dtypes)  # Muestra los tipos de datos de cada columna
+# # Identificar columnas de tipo object
+# columnas_object = X_train.select_dtypes(include=['object']).columns
+# print("Columnas categóricas o de texto:", columnas_object)
+#
+# for col in columnas_object:
+#     print(f"Columna '{col}':")
+#     print(X_train[col].unique())  # Valores únicos en la columna
 
-# Identificar columnas de tipo object
-columnas_object = X_train.select_dtypes(include=['object']).columns
-print("Columnas categóricas o de texto:", columnas_object)
+# Convierto las columnas con fechas a columnas numericas
+X_train['anio_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.year
+X_train['mes_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.month
+X_train['día_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.day
+X_train = X_train.drop(columns=['fecha_regularidad'])  # Opcional, elimina la columna original
 
-for col in columnas_object:
-    print(f"Columna '{col}':")
-    print(X_train[col].unique())  # Valores únicos en la columna
+# Lo mismo para X_test
+X_test['anio_regularidad'] = pd.to_datetime(X_test['fecha_regularidad']).dt.year
+X_test['mes_regularidad'] = pd.to_datetime(X_test['fecha_regularidad']).dt.month
+X_test['día_regularidad'] = pd.to_datetime(X_test['fecha_regularidad']).dt.day
+X_test = X_test.drop(columns=['fecha_regularidad'])
 
-# Convierto las columnas con datos numéricos almacenados como texto
-for col in columnas_object:
+
+le = LabelEncoder()
+for col in X_train:
+    # Convierto las columnas con datos numéricos almacenados como texto
     if col == 'plan' or col == 'materia':
         X_train[col] = pd.to_numeric(X_train[col], errors='coerce')
         X_test[col] = pd.to_numeric(X_test[col], errors='coerce')
+    # Convierto las columnas de texto a columnas categoricas
+    if col == 'cond_regularidad' or col == 'resultado' or col == 'calidad':
+        X_train[col] = le.fit_transform(X_train[col])
+        X_test[col] = le.transform(X_test[col])  # Usa el mismo mapeo para X_test
 
-
-# X_train = pd.get_dummies(X_train, columns=columnas_object, drop_first=True)
-# X_test = pd.get_dummies(X_test, columns=columnas_object, drop_first=True)
-#
 # # Asegurar consistencia en las columnas de X_train y X_test
 # X_train, X_test = X_train.align(X_test, join='inner', axis=1)
 
-print(X_train.dtypes)  # Muestra los tipos de datos de cada columna
+# print(X_train.dtypes)  # Muestra los tipos de datos de cada columna
 
-# # Crear y entrenar el modelo
-# modelo = LinearRegression()
-# modelo.fit(X_train, y_train)
-#
-# # Predecir
-# y_pred = modelo.predict(X_test)
-#
+# Relleno valores faltantes (NaN) de X_train con 0
+for col in X_train:
+    X_train.loc[:, col] = X_train[col].fillna(0)
+
+# Convierto las columnas con datos numéricos almacenados como texto
+y_train = pd.to_numeric(y_train, errors='coerce')
+
+# Relleno valores faltantes (NaN) de y_train con 0
+y_train = y_train.fillna(0)
+
+# Crear y entrenar el modelo
+modelo = LinearRegression()
+modelo.fit(X_train, y_train)
+
+# Predecir
+y_pred = modelo.predict(X_test)
+
 # # Evaluar
 # mae = mean_absolute_error(y_test, y_pred)
 # mse = mean_squared_error(y_test, y_pred)
