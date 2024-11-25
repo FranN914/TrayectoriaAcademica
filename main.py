@@ -1,9 +1,11 @@
 import CSVReader as csvReader
 import pandas as pd
+import tensorflow as tf
+from tensorflow.keras import layers, Model
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from tensorflow.keras.losses import MeanSquaredError
+
 
 ### Archivos a utilizar
 ruta_archivo_regularidades              = f"DataSource/002_regularidades.csv"
@@ -54,20 +56,11 @@ y = datos_entrenamiento['nota']
 # Dividir en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# # Identificar columnas de tipo object
-# columnas_object = X_train.select_dtypes(include=['object']).columns
-# print("Columnas categóricas o de texto:", columnas_object)
-#
-# for col in columnas_object:
-#     print(f"Columna '{col}':")
-#     print(X_train[col].unique())  # Valores únicos en la columna
-
 # Convierto las columnas con fechas a columnas numericas
 X_train['anio_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.year
 X_train['mes_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.month
 X_train['día_regularidad'] = pd.to_datetime(X_train['fecha_regularidad']).dt.day
 X_train = X_train.drop(columns=['fecha_regularidad'])  # Opcional, elimina la columna original
-
 # Lo mismo para X_test
 X_test['anio_regularidad'] = pd.to_datetime(X_test['fecha_regularidad']).dt.year
 X_test['mes_regularidad'] = pd.to_datetime(X_test['fecha_regularidad']).dt.month
@@ -84,12 +77,7 @@ for col in X_train:
     # Convierto las columnas de texto a columnas categoricas
     if col == 'cond_regularidad' or col == 'resultado' or col == 'calidad':
         X_train[col] = le.fit_transform(X_train[col])
-        X_test[col] = le.transform(X_test[col])  # Usa el mismo mapeo para X_test
-
-# # Asegurar consistencia en las columnas de X_train y X_test
-# X_train, X_test = X_train.align(X_test, join='inner', axis=1)
-
-# print(X_train.dtypes)  # Muestra los tipos de datos de cada columna
+        X_test[col] = le.transform(X_test[col])
 
 # Relleno valores faltantes (NaN) de X_train con 0
 for col in X_train:
@@ -104,16 +92,76 @@ y_test = pd.to_numeric(y_test, errors='coerce')
 y_train = y_train.fillna(0)
 y_test = y_test.fillna(0)
 
-# Crear y entrenar el modelo
-modelo = LinearRegression()
-modelo.fit(X_train, y_train)
 
-# Predecir
-y_pred = modelo.predict(X_test)
 
-# Evaluar
-mae = mean_absolute_error(y_test, y_pred)
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
 
-print(f"MAE: {mae}, MSE: {mse}, R²: {r2}")
+
+# Definimos el tamaño de entrada y latente
+input_dim = X.shape[1]  # Número de características
+latent_dim = 5          # Dimensión del espacio latente
+
+# Codificador
+inputs = layers.Input(shape=(input_dim,))
+x = layers.Dense(64, activation='relu')(inputs)
+x = layers.Dense(32, activation='relu')(x)
+z_mean = layers.Dense(latent_dim, name='z_mean')(x)
+z_log_var = layers.Dense(latent_dim, name='z_log_var')(x)
+
+# Muestra del espacio latente
+def sampling(args):
+    z_mean, z_log_var = args
+    batch = tf.shape(z_mean)[0]
+    dim = tf.shape(z_mean)[1]
+    epsilon = tf.random.normal(shape=(batch, dim))
+    return z_mean + tf.exp(0.5 * z_log_var) * epsilon
+
+z = layers.Lambda(sampling, output_shape=(latent_dim,), name='z')([z_mean, z_log_var])
+
+# Decodificador
+decoder_inputs = layers.Input(shape=(latent_dim,))
+x = layers.Dense(32, activation='relu')(decoder_inputs)
+x = layers.Dense(64, activation='relu')(x)
+outputs = layers.Dense(input_dim, activation='sigmoid')(x)
+
+# Construcción del modelo
+encoder = Model(inputs, [z_mean, z_log_var, z], name='encoder')
+decoder = Model(decoder_inputs, outputs, name='decoder')
+outputs = decoder(encoder(inputs)[2])
+vae = Model(inputs, outputs, name='vae')
+
+# Supongamos que ya tienes tus variables 'inputs', 'outputs', 'z_mean', 'z_log_var' y 'input_dim' configuradas.
+
+# Crear el modelo VAE (solo la parte de la arquitectura, no pérdidas)
+inputs = layers.Input(shape=(input_dim,))
+outputs = layers.Dense(input_dim, activation='sigmoid')(inputs)  # ejemplo de capa de salida
+
+# Aquí defines la media y varianza en un VAE simple
+z_mean = layers.Dense(latent_dim)(inputs)
+z_log_var = layers.Dense(latent_dim)(inputs)
+
+# Reconstrucción (Mean Squared Error)
+def compute_reconstruction_loss(inputs, outputs):
+    reconstruction_loss = tf.reduce_mean(tf.square(inputs - outputs), axis=-1)
+    reconstruction_loss = tf.reduce_sum(reconstruction_loss) * input_dim
+    return reconstruction_loss
+
+# Divergencia KL
+def compute_kl_loss(z_mean, z_log_var):
+    kl_loss = -0.5 * tf.reduce_mean(1 + z_log_var - tf.square(z_mean) - tf.exp(z_log_var))
+    return kl_loss
+
+# Calcula la pérdida en el entrenamiento
+reconstruction_loss = compute_reconstruction_loss(inputs, outputs)
+kl_loss = compute_kl_loss(z_mean, z_log_var)
+
+# Total VAE loss
+vae_loss = reconstruction_loss + kl_loss
+
+# Creando el modelo final
+vae = Model(inputs, outputs)
+vae.add_loss(vae_loss)
+
+# Compilar el modelo
+vae.compile(optimizer='adam')
+
+vae.fit(X, X, epochs=50, batch_size=32)
