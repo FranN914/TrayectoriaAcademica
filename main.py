@@ -1,11 +1,10 @@
 import CSVReader as csvReader
 import keras
 import pandas as pd
+import matplotlib.pyplot as plt
 from tensorflow.keras import layers, Model, Input
-from Sampling import Sampling
-from VAE import VAE
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 
 ### Archivos a utilizar
@@ -131,79 +130,14 @@ for col in X_train.columns:
     print("-" * 40)
 """
 
-
-# Convierto a una matriz numpy para que sea compatible con el modelo
-X_train = X_train.to_numpy().astype('float32')
-X_test = X_test.to_numpy().astype('float32')
-y_train = y_train.to_numpy().astype('float32')
-y_test = y_test.to_numpy().astype('float32')
-
 """
-#Comienza implementación del codificador del VAE
-"""
-
-latent_dim = 2          # Dimensión del espacio latente
-n_features = X_train.shape[1] # Número de características de datos de entrada
-
-# Entrada del codificador
-encoder_inputs = Input(shape=(n_features,))
-
-# Creación de capas para codificación
-x = layers.Dense(64, activation="relu")(encoder_inputs)
-x = layers.Dense(32, activation="relu")(x)
-x = layers.Dense(16, activation="relu")(x)
-
-# Cálculo de los parámetros del espacio latente
-mean = layers.Dense(latent_dim, name="mean")(x)
-log_var = layers.Dense(latent_dim, name="log_var")(x)
-
-# Muestreo
-sampling_layer = Sampling()  # Crear una instancia de la clase
-z = sampling_layer([mean, log_var])  # Llamar la instancia con los datos
-
-# Modelo del codificador
-encoder = Model(encoder_inputs, [mean, log_var, z], name="encoder")
-
-"""
-#Fin de la implementación del codificador
+#Comienza la implementación
 """
 
 """
-#Comienza la implementación del decodificador del VAE
-"""
-
-# Entrada en el espacio latente
-latent_inputs = keras.Input(shape=(latent_dim,))
-
-# Creación de capas para decodificación
-x = layers.Dense(16, activation="relu")(latent_inputs)
-x = layers.Dense(32, activation="relu")(x)
-x = layers.Dense(64, activation="relu")(x)
-
-# Capa de salida para reconstruir las características de entrada
-decoder_outputs = layers.Dense(X_train.shape[1], activation="linear")(x)  # Capa final con tamaño igual a características de salida
-
-# Modelo del decodificador
-decoder = keras.Model(latent_inputs, decoder_outputs, name="decoder")
-
-"""
-#Fin de la implementación del decodificador
+#Fin de la implementación 
 """
 
 """
-#Comienza el entrenamiento del VAE
+#Comienza el entrenamiento
 """
-
-# Creación del VAE
-vae = VAE(encoder, decoder)
-
-# Compilar el modelo con el optimizador Adam
-# vae.compile(optimizer=keras.optimizers.Adam())
-vae.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001))
-
-# Entrenamiento del VAE
-vae.fit(
-    X_train,  # Datos de entrada
-    epochs      = 10,
-    batch_size  = 128
-)

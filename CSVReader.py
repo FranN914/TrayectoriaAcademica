@@ -28,22 +28,16 @@ def filtrar_filas_archivo(ruta_archivo='', archivo_original=pd.DataFrame(), id_c
             archivo_modificado = archivo_modificado[archivo_modificado['resultado'] == 'A']
     return archivo_modificado
 
-# Método que obtiene por cada alumno la fecha menor de inscripcion a una determinada cursada
-def obtener_fechas_inscripcion(archivo_regularidades, materia):
-    alumnos = []
-    archivo_regularidades = filtrar_filas_archivo(archivo_original=archivo_regularidades, materia=materia)
+def obtener_fechas_inscripcion_optimizado(archivo_regularidades, materia):
+    """Obtiene la fecha de inscripción más temprana de cada alumno en una materia dada.
 
-    for indice, fila in archivo_regularidades.iterrows():
-        existe_alumno = False
-        for a in alumnos:
-            if fila['id_alumno'] == a['id_alumno']:
-                existe_alumno = True
-                if fila['fecha_regularidad'] < a['fecha_regularidad']:
-                    a['fecha_regularidad'] = fila['fecha_regularidad']
+    Args:
+        archivo_regularidades: DataFrame con los datos de regularidades.
+        materia: Código de la materia.
 
-        if not existe_alumno:
-            alumno = {}
-            alumno['id_alumno'] = fila['id_alumno']
-            alumno['fecha_regularidad'] = fila['fecha_regularidad']
-            alumnos.append(alumno)
-    return alumnos
+    Returns:
+        DataFrame con las fechas de inscripción más tempranas por alumno.
+    """
+
+    archivo_filtrado = filtrar_filas_archivo(archivo_original=archivo_regularidades, materia=materia)
+    return archivo_filtrado.groupby('id_alumno')['fecha_regularidad'].min().reset_index()
