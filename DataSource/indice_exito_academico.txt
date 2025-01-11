@@ -1,0 +1,36 @@
+1- En un principio el mejor indicador para una carrera exitosa es el promedio de todas las materias cursadas P
+
+i = P
+
+2- Los abandonos o recursadas son negativos y se deben desincentivar/minimizar, perjudica el desarrollo del alumno. Se consideran la cantidad de abandono y recursadas (U)
+
+i = P - U
+
+3- Se debe buscar que la carrera se haga en el menor tiempo posible. T es el tiempo en años que tomó al alumno finalizar su carrera. Si tardó más del tiempo mínimo podemos suponer dificultades en la carrera no solo por parte del alumno, si no que también por una distribución ineficiente de las materias. Se considera 5 años el tiempo ideal por lo tanto si T=5 -> T= 5-5 = 0 no afecta al índice. (Los años se redondean para abajo: 5,5 años (un año y medio) se cuenta como 5)
+
+i = P - U - (T - 5)
+
+
+4- Agregamos coeficientes para ajustar la importancia de cada parámetro
+
+i = a*P - b*U - c*(T - 5)
+
+5- El índice de la carrera se puede considerar como un promedio del índice de cada materia im
+
+im= a*P - b*U
+
+IM = El promedio del índice de todas las materias de la carrera
+
+i = IM - c*(T-5)
+
+6 - Cuando se cursa una materia puede ser más o menos difícil tener éxito dependiendo de las materias que cursa en paralelo. Queremos un mejor equilibrio de carga horaria. D es la dificultad, la suma de la dificultad de la materia y las que se cursaron en paralelo.
+Una mayor dificultad PERJUDICA la capacidad de éxito por lo que resta. Un plan de estudio debe buscar la menor dificultad posible al hacer que haya la menor carga horaria posible. (En principio D es la carga horaria de todas las materias cursadas en paralelo)
+
+im= a*P - b*U - e*D
+i = IM - c*(T-5)
+
+
+FORMULAR PARA INDICE DE EXITO ACADEMICO
+
+im= a*P - b*U - e*D
+i = IM - c*(T-5)
