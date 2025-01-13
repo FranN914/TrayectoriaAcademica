@@ -3,9 +3,12 @@ import os
 
 # Método que filtra la tabla para reducir el tamaño de la misma
 def filtrar_filas_archivo(ruta_archivo='', archivo_original=pd.DataFrame(), id_carrera='', id_plan='', materia=-1,
-                          filtro_aprobado=False, filtro_obligatoria='', id_persona='') -> pd:
+                          filtro_aprobado=False, filtro_obligatoria='', id_alumno='') -> pd:
     if materia == -1:
         if os.path.exists(ruta_archivo):
+            pd.set_option('display.max_columns', None)
+            pd.set_option('display.max_rows', None)
+            pd.set_option('display.expand_frame_repr', False)
             archivo_modificado = pd.read_csv(ruta_archivo, delimiter='|', low_memory=False)
             if id_carrera != '':    # Si se pasó el parámetro id_carrera
                 archivo_modificado = archivo_modificado[archivo_modificado['carrera'] == id_carrera]
@@ -14,8 +17,8 @@ def filtrar_filas_archivo(ruta_archivo='', archivo_original=pd.DataFrame(), id_c
             if 'materia' in archivo_modificado.columns:
                 # Filtrar los registros que contienen solo números en la columna 'materia'
                 archivo_modificado = archivo_modificado[archivo_modificado['materia'].astype(str).str.match(r'^\d+$')]
-            if id_persona != '':    # Si se pasó el parámetro id_persona
-                archivo_modificado = archivo_modificado[archivo_modificado['id_persona'] == id_persona]
+            if id_alumno != '':    # Si se pasó el parámetro id_persona
+                archivo_modificado = archivo_modificado[archivo_modificado['id_alumno'] == id_alumno]
             if filtro_obligatoria != '':
                 archivo_modificado = archivo_modificado[archivo_modificado['obligatoria'] == filtro_obligatoria]
                 # Para nuestro plan, inglés aparece como optativa y como ya la consideramos como obligatoria, no la tenemos en cuenta
