@@ -1,0 +1,221 @@
+[
+    {
+		"categories": {
+			"Programming": {
+				"subjects": [
+					{
+						"id": "0001",
+						"name": "Introducción a la Programación I",
+						"grade": 7.5
+					},
+					{
+						"id": "0005",
+						"name": "Introducción a la Programación II",
+						"grade": 8
+					},
+					{
+						"id": "0018",
+						"name": "Programación Exploratoria",
+						"grade": 10
+					},
+					{
+						"id": "0022",
+						"name": "Programación Orientada a Objetos",
+						"grade": 10
+					}
+				],
+				"average": 8.875
+			},
+			"Mathematics": {
+				"subjects": [
+					{
+						"id": "0002",
+						"name": "Análisis Matemático I",
+						"grade": 8
+					},
+					{
+						"id": "0011",
+						"name": "Análisis Matemático II",
+						"grade": 7
+					},
+					{
+						"id": "0030",
+						"name": "Introducción al Cálculo Diferencial e Integral",
+						"grade": 7
+					},
+					{
+						"id": "0125",
+						"name": "Algebra Lineal",
+						"grade": 5
+					},
+					{
+						"id": "0127",
+						"name": "Matemática Discreta",
+						"grade": 6
+					},
+					{
+						"id": "0145",
+						"name": "Algebra I",
+						"grade": 4
+					}
+				],
+				"average": 6.166666666666667
+			},
+			"Computer Science": {
+				"subjects": [
+					{
+						"id": "0004",
+						"name": "Ciencias de la Computación I",
+						"grade": 9
+					},
+					{
+						"id": "0008",
+						"name": "Ciencias de la Computación II",
+						"grade": 8.5
+					},
+					{
+						"id": "0013",
+						"name": "Análisis y Diseño de Algoritmos II",
+						"grade": 8
+					}
+				],
+				"average": 8.5
+			},
+			"Physics": {
+				"subjects": [
+					{
+						"id": "0007",
+						"name": "Física General",
+						"grade": 7
+					},
+					{
+						"id": "0012",
+						"name": "Electricidad y Magnetismo",
+						"grade": 9
+					}
+				],
+				"average": 8
+			},
+			"Data & Algorithms": {
+				"subjects": [
+					{
+						"id": "0009",
+						"name": "Análisis y Diseño de Algoritmos I",
+						"grade": 6.5
+					},
+					{
+						"id": "0014",
+						"name": "Comunicación de Datos I",
+						"grade": 9
+					},
+					{
+						"id": "0019",
+						"name": "Estructuras de Almacenamiento de Datos",
+						"grade": 7
+					},
+					{
+						"id": "0029",
+						"name": "Comunicación de Datos II",
+						"grade": 9
+					},
+					{
+						"id": "1190",
+						"name": "Legislación y Gestión Ambiental",
+						"grade": 9.77
+					}
+				],
+				"average": 8.254
+			},
+			"Software Engineering": {
+				"subjects": [
+					{
+						"id": "0020",
+						"name": "Metodologías de Desarrollo de Software I",
+						"grade": 8
+					},
+					{
+						"id": "0031",
+						"name": "Diseño de Sistemas de Software",
+						"grade": 10
+					},
+					{
+						"id": "0024",
+						"name": "Lenguajes de Programación I",
+						"grade": 9
+					},
+					{
+						"id": "0023",
+						"name": "Bases de Datos I",
+						"grade": 4.5
+					},
+					{
+						"id": "0032",
+						"name": "Diseño de Compiladores I",
+						"grade": 7.5
+					}
+				],
+				"average": 7.8
+			},
+			"Electronics": {
+				"subjects": [
+					{
+						"id": "0016",
+						"name": "Electrónica Digital",
+						"grade": 6.5
+					}
+				],
+				"average": 6.5
+			},
+			"Language": {
+				"subjects": [
+					{
+						"id": "0017",
+						"name": "Inglés",
+						"grade": 7
+					}
+				],
+				"average": 7
+			},
+			"Projects": {
+				"subjects": [
+					{
+						"id": "0205",
+						"name": "Proyecto Final",
+						"grade": 10
+					}
+				],
+				"average": 10
+			},
+			"Parallel & Distributed Computing": {
+				"subjects": [
+					{
+						"id": "1183",
+						"name": "Computación Paralela y Distribuída",
+						"grade": 10
+					}
+				],
+				"average": 10
+			},
+			"Economics": {
+				"subjects": [
+					{
+						"id": "1189",
+						"name": "Fundamentos de Economía y Proyectos de Inversión",
+						"grade": 10
+					}
+				],
+				"average": 10
+			},
+			"Web Development": {
+				"subjects": [
+					{
+						"id": "1230",
+						"name": "Taller de Desarrollo Web",
+						"grade": 10
+					}
+				],
+				"average": 10
+			}
+		}
+    }
+]

@@ -1,6 +1,283 @@
 [
     {
         "archivo": "resultados.json",
-        "resultado": "```json\n{\n  \"student_id\": \"60451\",\n  \"subjects\": [\n    {\n      \"subject_code\": \"0001\",\n      \"subject_name\": \"Introducción a la Programación I\",\n      \"final_grade\": 7.5\n    },\n    {\n      \"subject_code\": \"0002\",\n      \"subject_name\": \"Análisis Matemático I\",\n      \"final_grade\": 8\n    },\n    {\n      \"subject_code\": \"0004\",\n      \"subject_name\": \"Ciencias de la Computación I\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0005\",\n      \"subject_name\": \"Introducción a la Programación II\",\n      \"final_grade\": 8\n    },\n    {\n      \"subject_code\": \"0007\",\n      \"subject_name\": \"Física General\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0008\",\n      \"subject_name\": \"Ciencias de la Computación II\",\n      \"final_grade\": 8.5\n    },\n    {\n      \"subject_code\": \"0009\",\n      \"subject_name\": \"Análisis y Diseño de Algoritmos I\",\n      \"final_grade\": 6.5\n    },\n    {\n      \"subject_code\": \"0010\",\n      \"subject_name\": \"Introducción a la Arquitectura de Sistemas\",\n      \"final_grade\": 8.5\n    },\n    {\n      \"subject_code\": \"0011\",\n      \"subject_name\": \"Análisis Matemático II\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0012\",\n      \"subject_name\": \"Electricidad y Magnetismo\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0013\",\n      \"subject_name\": \"Análisis y Diseño de Algoritmos II\",\n      \"final_grade\": 8\n    },\n    {\n      \"subject_code\": \"0014\",\n      \"subject_name\": \"Comunicación de Datos I\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0015\",\n      \"subject_name\": \"Probabilidades y Estadística\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0016\",\n      \"subject_name\": \"Electrónica Digital\",\n      \"final_grade\": 6.5\n    },\n    {\n      \"subject_code\": \"0017\",\n      \"subject_name\": \"Inglés\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0018\",\n      \"subject_name\": \"Programación Exploratoria\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"0019\",\n      \"subject_name\": \"Estructuras de Almacenamiento de Datos\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0020\",\n      \"subject_name\": \"Metodologías de Desarrollo de Software I\",\n      \"final_grade\": 8\n    },\n    {\n      \"subject_code\": \"0021\",\n      \"subject_name\": \"Arquitectura de Computadoras I\",\n      \"final_grade\": 9.5\n    },\n    {\n      \"subject_code\": \"0022\",\n      \"subject_name\": \"Programación Orientada a Objetos\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"0023\",\n      \"subject_name\": \"Bases de Datos I\",\n      \"final_grade\": 4.5\n    },\n    {\n      \"subject_code\": \"0024\",\n      \"subject_name\": \"Lenguajes de Programación I\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0025\",\n      \"subject_name\": \"Sistemas Operativos I\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0026\",\n      \"subject_name\": \"Investigación Operativa I\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0027\",\n      \"subject_name\": \"Arquitectura de Computadoras y Técnicas Digitales\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0028\",\n      \"subject_name\": \"Teoría de la Información\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0029\",\n      \"subject_name\": \"Comunicación de Datos II\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0030\",\n      \"subject_name\": \"Introducción al Cálculo Diferencial e Integral\",\n      \"final_grade\": 7\n    },\n    {\n      \"subject_code\": \"0031\",\n      \"subject_name\": \"Diseño de Sistemas de Software\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"0032\",\n      \"subject_name\": \"Diseño de Compiladores I\",\n      \"final_grade\": 7.5\n    },\n    {\n      \"subject_code\": \"0033\",\n      \"subject_name\": \"Ingeniería de Software\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"0125\",\n      \"subject_name\": \"Algebra Lineal\",\n      \"final_grade\": 5\n    },\n    {\n      \"subject_code\": \"0127\",\n      \"subject_name\": \"Matemática Discreta\",\n      \"final_grade\": 6\n    },\n    {\n      \"subject_code\": \"0145\",\n      \"subject_name\": \"Algebra I\",\n      \"final_grade\": 4\n    },\n    {\n      \"subject_code\": \"0193\",\n      \"subject_name\": \"Química\",\n      \"final_grade\": 8\n    },\n    {\n      \"subject_code\": \"0205\",\n      \"subject_name\": \"Proyecto Final\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"1179\",\n      \"subject_name\": \"Introducción a la Programación de Dispositivos Móviles\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"1183\",\n      \"subject_name\": \"Computación Paralela y Distribuída\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"1188\",\n      \"subject_name\": \"Organización Empresarial\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"1189\",\n      \"subject_name\": \"Fundamentos de Economía y Proyectos de Inversión\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"1190\",\n      \"subject_name\": \"Legislación y Gestión Ambiental\",\n      \"final_grade\": 9.77\n    },\n    {\n      \"subject_code\": \"1230\",\n      \"subject_name\": \"Taller de Desarrollo Web\",\n      \"final_grade\": 10\n    },\n    {\n      \"subject_code\": \"1303\",\n      \"subject_name\": \"Taller de Python y Aplicaciones\",\n      \"final_grade\": 9\n    },\n    {\n      \"subject_code\": \"1305\",\n      \"subject_name\": \"Sistemas de Recomendación\",\n      \"final_grade\": 10\n    }\n  ]\n}\n```"
+        "resultado": {
+            "student_id": 60451,
+            "categories": [
+                {
+                    "category_name": "Programming",
+                    "subjects": [
+                        {
+                            "subject_id": "0001",
+                            "subject_name": "Introducción a la Programación I",
+                            "grade": 7.5
+                        },
+                        {
+                            "subject_id": "0005",
+                            "subject_name": "Introducción a la Programación II",
+                            "grade": 8
+                        },
+                        {
+                            "subject_id": "0018",
+                            "subject_name": "Programación Exploratoria",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "0022",
+                            "subject_name": "Programación Orientada a Objetos",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "0024",
+                            "subject_name": "Lenguajes de Programación I",
+                            "grade": 9
+                        },
+                        {
+                            "subject_id": "1179",
+                            "subject_name": "Introducción a la Programación de Dispositivos Móviles",
+                            "grade": 10
+                        }
+                    ],
+                    "average": 9.08
+                },
+                {
+                    "category_name": "Mathematics",
+                    "subjects": [
+                        {
+                            "subject_id": "0002",
+                            "subject_name": "Análisis Matemático I",
+                            "grade": 8
+                        },
+                        {
+                            "subject_id": "0011",
+                            "subject_name": "Análisis Matemático II",
+                            "grade": 7
+                        },
+                        {
+                            "subject_id": "0125",
+                            "subject_name": "Algebra Lineal",
+                            "grade": 5
+                        },
+                        {
+                            "subject_id": "0127",
+                            "subject_name": "Matemática Discreta",
+                            "grade": 6
+                        },
+                        {
+                            "subject_id": "0145",
+                            "subject_name": "Algebra I",
+                            "grade": 4
+                        },
+                        {
+                            "subject_id": "0030",
+                            "subject_name": "Introducción al Cálculo Diferencial e Integral",
+                            "grade": 7
+                        }
+                    ],
+                    "average": 6.17
+                },
+                {
+                    "category_name": "Computer Science",
+                    "subjects": [
+                        {
+                            "subject_id": "0004",
+                            "subject_name": "Ciencias de la Computación I",
+                            "grade": 9
+                        },
+                        {
+                            "subject_id": "0008",
+                            "subject_name": "Ciencias de la Computación II",
+                            "grade": 8.5
+                        },
+                        {
+                            "subject_id": "0033",
+                            "subject_name": "Ingeniería de Software",
+                            "grade": 9
+                        },
+                        {
+                            "subject_id": "0129",
+                            "subject_name": "Taller de Desarrollo Web",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "1303",
+                            "subject_name": "Taller de Python y Aplicaciones",
+                            "grade": 9
+                        },
+                        {
+                            "subject_id": "1183",
+                            "subject_name": "Computación Paralela y Distribuída",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "1305",
+                            "subject_name": "Sistemas de Recomendación",
+                            "grade": 10
+                        }
+                    ],
+                    "average": 9.36
+                },
+                {
+                    "category_name": "Physics",
+                    "subjects": [
+                        {
+                            "subject_id": "0007",
+                            "subject_name": "Física General",
+                            "grade": 7
+                        },
+                        {
+                            "subject_id": "0012",
+                            "subject_name": "Electricidad y Magnetismo",
+                            "grade": 9
+                        }
+                    ],
+                    "average": 8
+                },
+                {
+                    "category_name": "Electronics",
+                    "subjects": [
+                        {
+                            "subject_id": "0016",
+                            "subject_name": "Electrónica Digital",
+                            "grade": 6.5
+                        }
+                    ],
+                    "average": 6.5
+                },
+                {
+                    "category_name": "Architecture",
+                    "subjects": [
+                        {
+                            "subject_id": "0010",
+                            "subject_name": "Introducción a la Arquitectura de Sistemas",
+                            "grade": 8.5
+                        },
+                        {
+                            "subject_id": "0021",
+                            "subject_name": "Arquitectura de Computadoras I",
+                            "grade": 9.5
+                        },
+                        {
+                            "subject_id": "0027",
+                            "subject_name": "Arquitectura de Computadoras y Técnicas Digitales",
+                            "grade": 9
+                        }
+                    ],
+                    "average": 9
+                },
+                {
+                    "category_name": "Algorithm Design",
+                    "subjects": [
+                        {
+                            "subject_id": "0009",
+                            "subject_name": "Análisis y Diseño de Algoritmos I",
+                            "grade": 6.5
+                        },
+                        {
+                            "subject_id": "0013",
+                            "subject_name": "Análisis y Diseño de Algoritmos II",
+                            "grade": 8
+                        }
+                    ],
+                    "average": 7.25
+                },
+                {
+                    "category_name": "Data Communication",
+                    "subjects": [
+                        {
+                            "subject_id": "0014",
+                            "subject_name": "Comunicación de Datos I",
+                            "grade": 9
+                        },
+                        {
+                            "subject_id": "0029",
+                            "subject_name": "Comunicación de Datos II",
+                            "grade": 9
+                        }
+                    ],
+                    "average": 9
+                },
+                {
+                    "category_name": "Statistics",
+                    "subjects": [
+                        {
+                            "subject_id": "0015",
+                            "subject_name": "Probabilidades y Estadística",
+                            "grade": 7
+                        }
+                    ],
+                    "average": 7
+                },
+                {
+                    "category_name": "English",
+                    "subjects": [
+                        {
+                            "subject_id": "0017",
+                            "subject_name": "Inglés",
+                            "grade": 7
+                        }
+                    ],
+                    "average": 7
+                },
+                {
+                    "category_name": "Software Development",
+                    "subjects": [
+                        {
+                            "subject_id": "0019",
+                            "subject_name": "Estructuras de Almacenamiento de Datos",
+                            "grade": 7
+                        },
+                        {
+                            "subject_id": "0020",
+                            "subject_name": "Metodologías de Desarrollo de Software I",
+                            "grade": 8
+                        },
+                        {
+                            "subject_id": "0031",
+                            "subject_name": "Diseño de Sistemas de Software",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "0032",
+                            "subject_name": "Diseño de Compiladores I",
+                            "grade": 7.5
+                        },
+                        {
+                            "subject_id": "1189",
+                            "subject_name": "Fundamentos de Economía y Proyectos de Inversión",
+                            "grade": 10
+                        },
+                        {
+                            "subject_id": "1190",
+                            "subject_name": "Legislación y Gestión Ambiental",
+                            "grade": 9.77
+                        }
+                    ],
+                    "average": 8.38
+                },
+                {
+                    "category_name": "Economics",
+                    "subjects": [
+                        {
+                            "subject_id": "1188",
+                            "subject_name": "Organización Empresarial",
+                            "grade": 9
+                        }
+                    ],
+                    "average": 9
+                },
+                {
+                    "category_name": "Final Project",
+                    "subjects": [
+                        {
+                            "subject_id": "0205",
+                            "subject_name": "Proyecto Final",
+                            "grade": 10
+                        }
+                    ],
+                    "average": 10
+                }
+            ]
+        }
     }
 ]

@@ -1,6 +1,35 @@
 import CSVReader as csvReader
 from Assistant import Assistant
 from openai import OpenAI
+import json
+
+def formatear_json(input_json):
+    """
+    Formatea un JSON correctamente.
+
+    :param input_json: Archivo JSON de entrada (ruta).
+    """
+    try:
+        # Cargar el JSON
+        with open(input_json, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        # Formatear contenido
+        for entry in data:
+            if "resultado" in entry and entry["resultado"].startswith("```json"):
+                # Limpiar el bloque de código encapsulado
+                json_string = entry["resultado"].strip("```json\n").strip("```")
+                entry["resultado"] = json.loads(json_string)  # Convertir el string JSON en objeto
+
+        # Guardar el JSON formateado
+        with open(input_json, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+        print(f"JSON formateado guardado en: {input_json}")
+
+    except Exception as e:
+        print(f"Error al procesar el archivo JSON: {e}")
+
 
 ### Archivos a utilizar
 ruta_archivo_regularidades              = f"DataSource/002_regularidades.csv"
@@ -68,10 +97,12 @@ asistente = Assistant(
 # Fin de la implementación
 
 # Nombre del archivo CSV de salida
-archivo_csv = "resultados.json"
+archivo_json = "resultados.json"
 
 # Procesar los archivos y generar el CSV
-asistente.procesar_archivos_y_generar_json(archivo_csv, id_alumno, archivo_csv)
+asistente.procesar_archivos_y_generar_json(archivo_json, id_alumno, archivo_json)
+
+formatear_json(archivo_json)
 
 # #Comienzo del entrenamiento
 # chat_completion = client.chat.completions.create(

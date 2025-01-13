@@ -24,22 +24,27 @@ class Assistant:
             messages=[
                 {
                     "role": "system",
+                    "content": "Always return a JSON with what is required. Never add extra text explaining.",
+                },
+                {
+                    "role": "system",
                     "content": "Read the following file that contains information about the academic history of the"
                                "systems engineering degree, and about the subjects that each student took, along with"
                                "their grade. Do it in JSON format."
                                f"The information is obtained from a csv file: {self.archivo_historia_academica}",
                 },
                 {
-                    "role": "user",
-                    "content": f"Find the student with id {id_persona} and return the subjects he/she took, along with"
-                               "his/her final grade.",
+                    "role": "system",
+                    "content": "Using the subject ID obtained from the provided student, finds which category each"
+                               "subject belongs to and returns a JSON with the category name and its average. You must"
+                               "follow the same structure as the 'DataSource/ejemplo.json' file."
+                               f"The information is obtained from a csv file: {self.archivo_plan_2011_etiquetado}",
                 },
-                # {
-                #     "role": "system",
-                #     "content": "I will send you information about the existing subjects in the Systems Engineering degree"
-                #                "program of the 2022 curriculum."
-                #                f"The information is obtained from a csv file: {self.archivo_plan_2022}",
-                # },
+                {
+                    "role": "user",
+                    "content": f"Finds the student with id {id_persona} and returns the labels of the subjects they"
+                               f"took, along with the average for each category. Also includes the grade for each subject.",
+                },
                 # {
                 #     "role": "system",
                 #     "content": "I will send you information about the equivalencies of the subjects of the 2011 plan in the"
