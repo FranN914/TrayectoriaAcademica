@@ -1,39 +1,39 @@
-id_materia,nombre_materia,id_etiqueta
-1,Introducción a la Programación I,1-2-5
-2,Análisis Matemático I,1
-145,Algebra I,1
-193,Química,4
-4,Ciencias de la Computación I,1-2-5
-5,Introducción a la Programación II,2
-125,Algebra Lineal,1
-7,Física General,1-3
-127,Matemática Discreta,1
-8,Ciencias de la Computación II,5
-9,Análisis y Diseño de Algoritmos I,2-6-9
-10,Introducción a la Arquitectura de Sistemas,6-8-11
-11,Análisis Matemático II,1
-12,Electricidad y Magnetismo,1-3
-17,Inglés,13
-13,Análisis y Diseño de Algoritmos II,2-9
-14,Comunicación de Datos I,2-6-11
-15,Probabilidades y Estadística,1
-16,Electrónica Digital,8-14
-22,Programación Orientada a Objetos,2-9
-19,Estructuras de Almacenamiento de Datos,7-10
-20,Metodologías de Desarrollo de Software I,9-12
-21,Arquitectura de Computadoras I,2-6-8
-18,Programación Exploratoria,2
-23,Bases de Datos I,2-10
-24,Lenguajes de Programación I,7
-25,Sistemas Operativos I,7-8-9
-26,Investigación Operativa I,1
-27,Arquitectura de Computadoras y Técnicas Digitales,1-8-11
-28,Teoría de la Información,1-2
-29,Comunicación de Datos II,2-11
-30,Introducción al Cálculo Diferencial e Integral,1
-31,Diseño de Sistemas de Software,2-9-12
-32,Diseño de Compiladores I,2-7
-33,Ingeniería de Software,2-9-12
-1188,Organización Empresarial,1-15
-1189,Fundamentos de Economía y Proyectos de Inversión,15
-1190,Legislación y Gestión Ambiental,15
+id_materia|nombre_materia|id_etiqueta
+1|Introducción a la Programación I|1-2-5
+2|Análisis Matemático I|1
+145|Algebra I|1
+193|Química|4
+4|Ciencias de la Computación I|1-2-5
+5|Introducción a la Programación II|2
+125|Algebra Lineal|1
+7|Física General|1-3
+127|Matemática Discreta|1
+8|Ciencias de la Computación II|5
+9|Análisis y Diseño de Algoritmos I|2-6-9
+10|Introducción a la Arquitectura de Sistemas|6-8-11
+11|Análisis Matemático II|1
+12|Electricidad y Magnetismo|1-3
+17|Inglés|13
+13|Análisis y Diseño de Algoritmos II|2-9
+14|Comunicación de Datos I|2-6-11
+15|Probabilidades y Estadística|1
+16|Electrónica Digital|8-14
+22|Programación Orientada a Objetos|2-9
+19|Estructuras de Almacenamiento de Datos|7-10
+20|Metodologías de Desarrollo de Software I|9-12
+21|Arquitectura de Computadoras I|2-6-8
+18|Programación Exploratoria|2
+23|Bases de Datos I|2-10
+24|Lenguajes de Programación I|7
+25|Sistemas Operativos I|7-8-9
+26|Investigación Operativa I|1
+27|Arquitectura de Computadoras y Técnicas Digitales|1-8-11
+28|Teoría de la Información|1-2
+29|Comunicación de Datos II|2-11
+30|Introducción al Cálculo Diferencial e Integral|1
+31|Diseño de Sistemas de Software|2-9-12
+32|Diseño de Compiladores I|2-7
+33|Ingeniería de Software|2-9-12
+1188|Organización Empresarial|1-15
+1189|Fundamentos de Economía y Proyectos de Inversión|15
+1190|Legislación y Gestión Ambiental|15

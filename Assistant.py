@@ -24,7 +24,10 @@ class Assistant:
             messages=[
                 {
                     "role": "system",
-                    "content": "Always return a JSON with what is required. Never add extra text explaining.",
+                    "content": "Always return a JSON with what is required. Never add extra text explaining. You must"
+                               "follow the same structure as the 'DataSource/ejemplo.json' file. First, always the"
+                               "categories (The key must be the name of the category). Inside, the subjects and the"
+                               "average for the category. Inside, its identifier, name and grade.",
                 },
                 {
                     "role": "system",
@@ -36,35 +39,24 @@ class Assistant:
                 {
                     "role": "system",
                     "content": "Using the subject ID obtained from the provided student, finds which category each"
-                               "subject belongs to and returns a JSON with the category name and its average. You must"
-                               "follow the same structure as the 'DataSource/ejemplo.json' file."
+                               "subject belongs to and returns a JSON with the category name and its average."
                                f"The information is obtained from a csv file: {self.archivo_plan_2011_etiquetado}",
                 },
                 {
-                    "role": "user",
-                    "content": f"Finds the student with id {id_persona} and returns the labels of the subjects they"
-                               f"took, along with the average for each category. Also includes the grade for each subject.",
+                    "role": "system",
+                    "content": f"Using the identifier of each subject in the 2011 plan, look for the equivalency"
+                               f"identifier in the {self.archivo_equivalencias} file, and then use this identifier to"
+                               f"obtain the equivalent subject in the 2022 plan in the {self.archivo_plan_2022} file."
+                               f"There may be more than one subject from the 2011 plan with the same identifier for"
+                               f"the 2022 plan. They will be separated by '-'."
+                               f"If no identifier is found, represent the subject as an empty string, and its grade"
+                               f"will be 0."
+                               f"The information is obtained from a csv file: {self.archivo_equivalencias}. ",
                 },
-                # {
-                #     "role": "system",
-                #     "content": "I will send you information about the equivalencies of the subjects of the 2011 plan in the"
-                #                "2022 plan."
-                #                f"The information is obtained from a csv file: {self.archivo_equivalencias}",
-                # },
-                # {
-                #     "role": "system",
-                #     "content": "I will send you information about the labels. A label is a category that is assigned to a"
-                #                "subject or elective. This is in order to know in which category the student stands out the "
-                #                "most. When evaluating a subject taken in the 2022 plan, it is verified which"
-                #                "category/categories it belongs to and it can be known if it is one in which the student stands"
-                #                "out or not, in order to assign his/her grade."
-                #                f"The information is obtained from a csv file: {self.archivo_etiquetas}",
-                # },
-                # {
-                #     "role": "system",
-                #     "content": "I will send you information about the 2011 plan labeling."
-                #                f"The information is obtained from a csv file: {self.archivo_plan_2011_etiquetado}",
-                # },
+                {
+                    "role": "user",
+                    "content": f"Search for the student with id {id_persona} and also return the equivalent subject in the 2022 plan.",
+                },
                 # {
                 #     "role": "system",
                 #     "content": "I will send you information about the precedences required for each subject in the 2011 plan."

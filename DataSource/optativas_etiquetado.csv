@@ -1,298 +1,298 @@
-id_optativa,nombre_optativa,id_etiqueta1,id_etiqueta2,id_etiqueta3
-163,Configuración y Mantenimiento de Sistemas Operativos Orientados a Redes I,8,11,6
-228,Técnicas de Documentación y Validación,12,7,
-229,Interfaces de Usuario e Interacción,9,5,
-230,Arquitecturas Web,8,9,11
-1001,Arquitecturas de Software Reflexivas,9,8,6
-1002,Tópicos Avanzados en Bases de Datos,10,2,
-1003,Procesamiento de Sonido,2,1,5
-1004,Procesamiento de Imágenes I,2,1,5
-1005,Lenguajes de Programación II,2,7,5
-1006,Sistemas Operativos II,8,6,9
-1007,Sistemas Distribuidos I,11,8,9
-1008,Modelos Dinámicos,1,10,5
-1009,Introducción a la Lógica Matemática,1,5,6
-1010,Sistemas de Información y Concepción de BDOO,10,9,5
-1011,Microeconomía,1,15,
-1012,Dirección General y Administración I,15,,
-1013,Evaluación de Proyectos,15,1,
-1014,Modelos y Simulación I,1,9,
-1015,VHDL,2,14,
-1016,Arquitecturas Avanzadas,8,6,
-1017,Dirección General y Administración II,15,,
-1018,Ingeniería Legal,15,,
-1019,Sistemas de Gestión y Control de la Producción,15,12,
-1020,Modelos y Simulación II,1,9,
-1021,"Proyectos de Informática, Concepción y Desarrollo",9,12,
-1022,Macroeconomía,1,15,
-1023,Tópicos de Inteligencia Artificial Distribuida,2,7,
-1024,Introducción a Arquitecturas de Software,8,9,
-1025,Desarrollo Industrial de Software,12,9,
-1026,Framework Construction Workshop,9,12,
-1027,Metaclass Mechanism - A CLOS Perspective,9,2,
-1028,Multimedia,2,9,
-1029,Criptografía y Aplicaciones en la Internet,11,7,17
-1030,Ingeniería de Requerimientos,9,12,
-1031,Tecnologías de Diseño de Interfaces a Usuario,9,2,
-1032,Estereoscopía Digital I,5,9,
-1033,Tópicos de Análisis y Procesamiento de Señales,1,5,
-1034,Arquitecturas TCP/IP,11,8,
-1035,Programación en Internet / El Lenguaje de Programación Java,2,9,
-1036,Matemática Aplicada,1,,
-1037,Microprogramación,2,8,
-1038,Introducción a las Lógicas y Álgebras Modales,1,6,
-1039,Refinement Methods for Programs and Specifications,9,7,
-1040,Sistemas de Razonamiento Computacional,16,1,
-1041,Visualización de Datos de Ingeniería,5,9,
-1042,Simulación de Procesos,1,9,
-1043,Diseño de Compiladores II,9,2,
-1044,Procesos Estocásticos,1,10,
-1045,Control Automático I,1,9,
-1046,Control Automático II,1,9,
-1047,Bases de Datos Avanzadas,10,2,
-1048,Metodologías de Desarrollo de Software II,12,9,
-1049,Modelística Avanzada,1,10,
-1050,Razonamiento Basado en Casos,16,5,
-1051,Sistemas Multi-Agentes,16,17,
-1052,Transformada de Fourier y Wavelets,1,5,
-1053,Visualización Tridimensional,5,9,
-1054,Programación en Lenguaje Ensamblador,2,8,
-1055,Construcción de Interfaces a Usuario,9,2,
-1056,Inteligencia Artificial,16,5,
-1057,Visualización Computacional de Datos,5,9,
-1058,Sistemas Móviles,11,9,
-1059,Multicast IP,11,17,
-1060,Información Referenciada,5,9,
-1061,Sistemas de Visualización y Exploración de Información,9,5,
-1062,Agentes Inteligentes,16,17,
-1063,Multi-Agent Systems,16,17,
-1064,"Retrieval, Filtering and Classification of Text Documents",5,16,
-1065,Software Architecture in Practice,9,8,
-1066,Modelamiento Conceptual e Ingeniería de Sistemas de Información,10,9,
-1067,Estrategias para la Resolución de Problemas de Satisfacción de Restricciones,1,5,
-1068,Técnicas de 'Programación Hardware': CAD para FPGAs y CPLDs,2,14,
-1069,Modelos Discretos: Matrices y Grafos,1,10,
-1070,Arquitecturas de Sistemas Interactivos,8,9,
-1071,Management de Tecnología,15,12,
-1072,Introducción a la Lógica Modal,1,5,
-1073,Introducción a la Visión en Robótica y Modelos Numéricos,16,5,
-1074,"Introducción al Data Warehouse, Olap y Data Mining",10,5,
-1075,Algoritmos en Hardware: Lógica Programable y otras opciones VLSI,2,14,
-1076,Diseño de Interfaces,9,2,
-1077,Herramientas de Desarrollo de Aplicaciones en Internet: Comercio Electrónico y Computación Móvil,9,11,
-1078,Introduction to Multi-Agent Systems,16,17,
-1079,Object-Oriented Enterprise and Application Frameworks,9,12,
-1080,Frameworks Orientados a Objetos,9,2,
-1081,"Enfoques Reflexivos para Agentes, Aspectos y Patrones de Diseño",9,16,
-1082,Tópicos Avanzados en Comunicación de Datos,11,17,
-1083,"Introducción al Data Mining, su Aplicación a la Empresa",10,5,
-1084,Organización e Informatización de Proyectos,15,12,
-1085,Aprendizaje Simbólico de Máquina,16,5,
-1087,Diseño de Controladores en Lógica Difusa,5,16,
-1088,Software Design Methods: UML in Action,9,12,
-1089,Herramientas para el Desarrollo de Aplicaciones en Internet: Comercio Electrónico y Computación Móvil,9,11,
-1091,Enfoques Reflexivos,9,16,
-1092,"ALU en Microprocesadores. Implementación CLD, FSM y FPGA",14,8,
-1093,Desarrollo de Software con UML,9,12,
-1094,Taller de Linux: Programación de Drivers en RTL,2,9,
-1095,Técnicas de Lógica Difusa en Control Automático,5,16,
-1096,Agentes Inteligentes en Internet,16,17,
-1097,Integridad en Bases de Datos,10,2,
-1098,Ingeniería de Requisitos,9,12,
-1099,Tópicos Avanzados en Data Mining,10,16,
-1100,Metodologías para Desarrollo de Agentes,16,12,
-1101,Taller de UML,9,12,
-1102,Procesamiento de Imágenes II,2,5,
-1103,Sistemas de Información y Control de Marketing,15,10,
-1104,Tecnología Avanzada para el Desarrollo de Aplicaciones Distribuidas,17,9,
-1105,Métodos Relacionales para la Especificación de Software,9,10,
-1106,Introducción al Uso de VHDL en FPGAs: Entorno de Diseño ISE,2,14,
-1107,Modelado e Integración de Empresas: Principios y Aplicaciones,15,10,
-1108,Sistemas de Tiempo Real,9,2,
-1109,Introducción al Model Checking,5,1,
-1110,Ingeniería de Software de Aplicaciones Web,9,12,
-1111,Decisiones Financieras,15,1,
-1112,Evaluación de Proyectos Informáticos,15,12,
-1114,Introducción a la Teoría y Aplicaciones de Redes Neuronales Artificiales,16,5,
-1115,Análisis y Recuperación de Información,10,5,
-1116,Sistemas de Administración de Recursos Humanos,15,10,
-1117,Performance and Scalability of E-Commerce Systems,9,17,
-1118,Microcontroladores,14,8,
-1119,Agentes Personales,16,17,
-1120,Programación de Hardware: VHDL en FPGAs,2,14,
-1121,Descubrimiento de Conocimiento en Base de Datos,10,16,
-1122,Proyectos Informáticos,9,12,
-1123,Introducción a la Robótica Basada en Comportamientos,16,5,
-1124,Introduction to Answer Set Programming,5,9,
-1125,Visualización Computacional de Datos I,5,9,
-1126,Visualización Computacional de Datos II,5,9,
-1127,Fundamentos Matemáticos de la Visión 3D en Robótica,1,5,
-1128,Desarrollo de Software Orientado a Aspectos,9,12,
-1130,Software Libre - Código Abierto,9,12,7
-1131,Métodos Numéricos,1,5,
-1132,"Synthesis of Arithmetic Circuits: FPGA, ASIC and Embedded Systems",14,2,
-1133,Advance Topics Software Architecture,9,8,
-1134,Interacción Digital entre Aplicaciones,9,11,
-1135,Introducción a las Wavelets,1,5,
-1136,Métodos Formales Livianos,9,5,
-1137,Programming Mobile Device: An Introduction,2,9,
-1138,Introducción a Grid Computing,17,5,
-1139,Current Best Practices in Software Architecture,9,12,
-1140,Introducción a las Redes Neuronales y la Neuro-Programación Dinámica,16,5,
-1141,Bioinformática: Conceptos Básicos y Metodología,5,16,
-1142,Teledetección Satelital Cuantitativa,5,1,
-1143,Visualización Computacional I,5,9,
-1144,Visualización Computacional II,5,9,
-1145,Arquitectura de Software Dirigida por Modelos,9,8,
-1146,Introducción a Human-Computer Interaction,9,5,
-1147,Técnicas y Herramientas para Modelos del Negocio,15,10,
-1149,Lenguajes de Especificación de Hardware: VHDL para principiantes,2,14,
-1150,Modelos y Simulación para la Gestión Organizacional,1,15,
-1151,"Diseño con Lógica Programable: FPGAs, Herramientas EDA y VHDL",14,2,
-1152,Introducción a los Algoritmos de Planning,16,5,
-1153,Ingeniería del Conocimiento,16,5,
-1154,Fundamentos de Knowledge Management,15,16,
-1155,Introducción a Evolución de Sistemas de Software,9,12,
-1156,Taller en Informática de Gestión - Herramientas para la decisión y la acción,15,9,
-1157,Taller de Tiempo Real para Control Robótico,16,5,
-1158,Técnicas Avanzadas de Diseño de Sistemas Digitales,9,14,
-1160,Sistemas de Recomendación de Información,16,5,
-1161,Taller de Programación Orientada a Objetos en Java,2,9,
-1162,Taller de Sistemas de Información Geográfica,10,5,
-1163,"Síntesis de Circuitos Aritméticos, FPGA, ASIC, Sistemas Embebidos",14,2,
-1166,Aprendizaje Colaborativo Soportado por Computadoras,16,5,
-1167,Introducción a Computación Evolutiva,16,5,
-1168,Model Checking,5,1,
-1169,Teledetección: Fundamentos y su aplicación en Sistemas de Información Geográfica (SIG),10,1,
-1171,Gestión del Conocimiento,15,10,
-1173,Introducción a la Navegación Autónoma de Robots,16,5,
-1175,"Organización, Integridad e Informatización",15,10,
-1176,Descubrimiento de Conocimiento a partir de Datos,16,10,
-1177,Informática Médica,5,10,
-1180,Modelado de Datos en el Mundo Real: Teoría vs. Práctica,10,9,
-1181,Técnicas de Ingeniería Inversa en el Contexto de Arquitecturas de Software Dirigidas por Modelos,9,8,
-1182,Trabajo Colaborativo soportado por Computadora,16,12,
-1183,Computación Paralela y Distribuída,17,5,
-1184,Introducción a la Optimización de Restricciones Distribuída,16,1,
-1185,Minería de Redes Sociales,16,10,
-1186,Organización y Gestión de Empresas,15,,
-1187,Tópicos de Matemática Computacional,1,5,
-1192,Sistemas de Interfaz Natural,9,5,
-1193,Sistemas de Información Geográfica Open Source,10,5,
-1194,"Minería de Redes Sociales II, Análisis de Redes Sociales Dinámicas",16,10,
-1195,Redes de Sensores,11,17,
-1197,Métodos de Desarrollo Centrados en Arquitecturas de Software,9,8,
-1198,Minería de Datos WEB,10,16,
-1203,Minería de Datos para Descubrir Modelos Causales,10,16,
-1206,Tecnologías de la Información en Salud,10,5,
-1209,Negocios con Base Tecnológica,15,10,
-1211,Taller de Programación de Videojuegos,9,2,
-1212,Desarrollo de Software Dirigido por Modelos,9,12,
-1213,Aceleración Hardware de Algoritmos,14,2,
-1215,Introducción a la Simulación de Sistemas Dinámicos,1,9,
-1217,Redes Sociales Basadas en Localización,10,16,
-1218,Informática Industrial,15,10,
-1220,Cooperativismo y Economía Social y Solidaria RCA 026/2015,15,,
-1221,Minería de Datos para Descubrir Modelos Causales RCA 026/2015,10,16,
-1224,Informática Industrial RCA 026/2015,15,10,
-1225,Derecho Informático,15,,
-1227,Taller de Trabajo Colaborativo,12,15,
-1228,Desarrollo de Software Dirigido por Modelos RCA 157/2015,9,12,
-1230,Taller de Desarrollo Web,9,7,
-1231,Sistemas de Personalización,10,16,
-1233,Científicos de Datos,10,16,
-1234,Introducción a la Actuación en Informática Judicial,15,5,
-1240,Taller de Programación JAVA,2,7,
-1241,Arquitecturas para Big Data,10,8,
-1242,Formulación de Proyectos y Planes Estratégicos,15,12,
-1245,Autonomía e Inteligencia Artificial,16,17,
-1246,Científicos de Datos,10,16,
-1254,Técnicas de Arquitectura de Software,9,8,
-1255,Introducción a los Fundamentos de las Criptomonedas,10,7,2
-1256,Taller de Programación de Blockchain,7,2,
-1257,Minería de Datos WEB RCA 030/2018,10,16,
-1258,Inteligencia Artificial RCA 030/2018,16,5,
-1259,Introducción a la Computación Evolutiva,16,7,
-1262,Introducción a los Sistemas Embebidos,8,2,
-1285,Inteligencia de Negocios y Ciudades Inteligentes,16,10,
-1286,Agentes Inteligentes Personales,16,17,
-1305,Sistemas de Recomendación,16,10,
-1338,#MicroDiseño: Diseño Ágil Inteligente de Software,9,12,
-1342,Computación Científica de Alto Desempeño,5,7,
-1343,Desarrollo de Habilidades no Técnicas (Transformando las Soft Skills en Power Skills),15,,
-1344,Modelling Brains,16,5,
-1345,Neuroscience of Learning Machines,16,5,
-1346,Taller de Inteligencia Artificial,16,7,
-1357,Computación Afectiva: Detección Automática de Emociones y Personalidad,16,5,
-4081,Electrónica,14,,
-4097,Productos Tensoriales de Espacios Vectoriales,1,,
-176,Formulación y Evaluación de Proyectos,15,1,
-1086,Cuadro de Mando Integral,15,,
-1090,Taller de Sistemas Multi-Agentes,16,17,
-1113,Introducción a la Gestión del Conocimiento,15,10,
-1129,Métodos Ágiles para el Desarrollo de Software,12,9,
-1148,Taller de Ingeniería de Software,9,12,
-1159,Computación Orientada a Servicios,17,9,
-1164,Seguridad de Sistemas Informáticos,7,9,
-1165,Taller de Informática de Gestión II - Conocimiento en Acción,15,10,
-1170,Diseño de Interacción Centrado en el Usuario,9,7,
-1172,Introducción a los Algoritmos de Planeamiento,16,7,
-1174,Taller de Microcontroladores,14,8,
-1178,Inteligencia de Negocios,16,10,
-1179,Introducción a la Programación de Dispositivos Móviles,2,7,
-1191,Introducción al GPU Computing,2,5,
-1196,Fundamentos de Navegación Autónoma de Robots,16,5,
-1204,Estrategias para Mejorar la Separación de Concerns,9,7,
-1210,Control de Procesos en Tiempo-Real,7,9,
-1214,Cooperativismo y Economía Social y Solidaria,15,,
-1216,Taller de Imágenes Médicas,5,2,
-1219,Arquitecturas para Computación en la Nube,8,17,
-1232,Minería de Datos con R,10,16,
-1236,Taller de Trabajo Colaborativo (RCA 198/2016),12,15,
-1237,Derecho Informático RCA 198/2016,15,,
-1243,Herramientas para la Creación de Emprendimientos Tecnológicos,15,12,
-1244,Sistemas de Recomendación,16,10,
-1260,Teoría de la Relatividad,1,,
-1261,Introducción a las Redes Neuronales y Aprendizaje Profundo,16,5,
-1263,Introducción al Procesamiento Digital de Señales Aplicado al Audio Digital,5,2,
-1264,Sistemas Embebidos en Lógica Programable,14,8,
-1265,Sistemas Embebidos: Internet de las cosas,17,14,
-1266,Taller de Operaciones de Desarrollo,12,9,
-1267,Sistemas de Recomendación RCA 184/2018,16,10,
-1268,Taller de Microcontroladores RCA 184/2018,14,8,
-1269,Introducción a los Algoritmos de Planeamiento RCA 184/2018,16,7,
-1270,Estrategias para Mejorar la Separación de Concerns,9,7,
-1276,Desarrollos de Chatbots,16,7,
-1284,Aseguramiento de Calidad de Software,9,12,
-1287,Introducción a la Computación Evolutiva RCA 043/2019,16,7,
-1300,Control de Procesos en Ambientes Abiertos de Desarrollo,7,9,
-1301,Taller de Métodos Ágiles,12,9,
-1302,Tecnologías Disruptivas de la Industria 4.0,15,16,
-1303,Taller de Python y Aplicaciones,2,5,
-1304,Cuadro de Mando Integral,15,,
-1312,Programación Software de FPGAs,14,2,
-1313,Taller de Python y Aplicaciones al Territorio,2,5,
-1314,Programación de Alto Rendimiento en JS,2,7,
-1315,Taller de Lenguajes de Programación,7,2,
-1316,Calidad y Certificación del Proceso del Producto de Software,9,12,
-1317,Administración de Proyectos de Software II,15,12,
-1331,Taller de Ingeniería de Software,9,12,
-1332,#MicroDiseño: Diseño Ágil Inteligente de Software,9,12,
-1333,Fundamentos en Diseño Digital sobre FPGAs,14,9,
-1334,Ciudades Inteligentes y Tecnologías Disruptivas,16,10,
-1336,Sistemas Adaptativos en Neurociencia e Inteligencia Computacional,16,5,
-1337,Ciencia de Datos para Ciudades,10,16,
-1349,Aceleración de Sistemas Mediante Lógica Programable,14,2,
-1350,Introducción al Trading Algorítmico,10,2,
-1351,Científicos de Datos,10,16,
-1352,TIPS Para Emprender - Taller de Idea Proyecto Sostenible,15,,
-1353,Introducción a la Simulación de Sistemas Dinámicos,1,9,
-1354,Diseño de Sistemas Inteligentes,16,9,
-1361,Ingeniería de Software Dirigida por Modelos,9,12,
-1362,Realidad Virtual y Entornos Inmersivos en Trabajos Interdisciplinarios,16,9,
-1363,Seguridad de Sistemas Informáticos,7,9,
-1365,Evaluación de Sistemas Inteligentes,16,9,
-3044,Medios de Representación,9,5,
-4091,Introducción a la Estadística Bayesiana,1,5,
-4094,Resolución de Problemas,5,7,
-4118,Cuerpos Finitos,1,,
+id_optativa|nombre_optativa|id_etiqueta1|id_etiqueta2|id_etiqueta3
+163|Configuración y Mantenimiento de Sistemas Operativos Orientados a Redes I|8|11|6
+228|Técnicas de Documentación y Validación|12|7|
+229|Interfaces de Usuario e Interacción|9|5|
+230|Arquitecturas Web|8|9|11
+1001|Arquitecturas de Software Reflexivas|9|8|6
+1002|Tópicos Avanzados en Bases de Datos|10|2|
+1003|Procesamiento de Sonido|2|1|5
+1004|Procesamiento de Imágenes I|2|1|5
+1005|Lenguajes de Programación II|2|7|5
+1006|Sistemas Operativos II|8|6|9
+1007|Sistemas Distribuidos I|11|8|9
+1008|Modelos Dinámicos|1|10|5
+1009|Introducción a la Lógica Matemática|1|5|6
+1010|Sistemas de Información y Concepción de BDOO|10|9|5
+1011|Microeconomía|1|15|
+1012|Dirección General y Administración I|15||
+1013|Evaluación de Proyectos|15|1|
+1014|Modelos y Simulación I|1|9|
+1015|VHDL|2|14|
+1016|Arquitecturas Avanzadas|8|6|
+1017|Dirección General y Administración II|15||
+1018|Ingeniería Legal|15||
+1019|Sistemas de Gestión y Control de la Producción|15|12|
+1020|Modelos y Simulación II|1|9|
+1021|"Proyectos de Informática| Concepción y Desarrollo"|9|12|
+1022|Macroeconomía|1|15|
+1023|Tópicos de Inteligencia Artificial Distribuida|2|7|
+1024|Introducción a Arquitecturas de Software|8|9|
+1025|Desarrollo Industrial de Software|12|9|
+1026|Framework Construction Workshop|9|12|
+1027|Metaclass Mechanism - A CLOS Perspective|9|2|
+1028|Multimedia|2|9|
+1029|Criptografía y Aplicaciones en la Internet|11|7|17
+1030|Ingeniería de Requerimientos|9|12|
+1031|Tecnologías de Diseño de Interfaces a Usuario|9|2|
+1032|Estereoscopía Digital I|5|9|
+1033|Tópicos de Análisis y Procesamiento de Señales|1|5|
+1034|Arquitecturas TCP/IP|11|8|
+1035|Programación en Internet / El Lenguaje de Programación Java|2|9|
+1036|Matemática Aplicada|1||
+1037|Microprogramación|2|8|
+1038|Introducción a las Lógicas y Álgebras Modales|1|6|
+1039|Refinement Methods for Programs and Specifications|9|7|
+1040|Sistemas de Razonamiento Computacional|16|1|
+1041|Visualización de Datos de Ingeniería|5|9|
+1042|Simulación de Procesos|1|9|
+1043|Diseño de Compiladores II|9|2|
+1044|Procesos Estocásticos|1|10|
+1045|Control Automático I|1|9|
+1046|Control Automático II|1|9|
+1047|Bases de Datos Avanzadas|10|2|
+1048|Metodologías de Desarrollo de Software II|12|9|
+1049|Modelística Avanzada|1|10|
+1050|Razonamiento Basado en Casos|16|5|
+1051|Sistemas Multi-Agentes|16|17|
+1052|Transformada de Fourier y Wavelets|1|5|
+1053|Visualización Tridimensional|5|9|
+1054|Programación en Lenguaje Ensamblador|2|8|
+1055|Construcción de Interfaces a Usuario|9|2|
+1056|Inteligencia Artificial|16|5|
+1057|Visualización Computacional de Datos|5|9|
+1058|Sistemas Móviles|11|9|
+1059|Multicast IP|11|17|
+1060|Información Referenciada|5|9|
+1061|Sistemas de Visualización y Exploración de Información|9|5|
+1062|Agentes Inteligentes|16|17|
+1063|Multi-Agent Systems|16|17|
+1064|"Retrieval| Filtering and Classification of Text Documents"|5|16|
+1065|Software Architecture in Practice|9|8|
+1066|Modelamiento Conceptual e Ingeniería de Sistemas de Información|10|9|
+1067|Estrategias para la Resolución de Problemas de Satisfacción de Restricciones|1|5|
+1068|Técnicas de 'Programación Hardware': CAD para FPGAs y CPLDs|2|14|
+1069|Modelos Discretos: Matrices y Grafos|1|10|
+1070|Arquitecturas de Sistemas Interactivos|8|9|
+1071|Management de Tecnología|15|12|
+1072|Introducción a la Lógica Modal|1|5|
+1073|Introducción a la Visión en Robótica y Modelos Numéricos|16|5|
+1074|"Introducción al Data Warehouse| Olap y Data Mining"|10|5|
+1075|Algoritmos en Hardware: Lógica Programable y otras opciones VLSI|2|14|
+1076|Diseño de Interfaces|9|2|
+1077|Herramientas de Desarrollo de Aplicaciones en Internet: Comercio Electrónico y Computación Móvil|9|11|
+1078|Introduction to Multi-Agent Systems|16|17|
+1079|Object-Oriented Enterprise and Application Frameworks|9|12|
+1080|Frameworks Orientados a Objetos|9|2|
+1081|"Enfoques Reflexivos para Agentes| Aspectos y Patrones de Diseño"|9|16|
+1082|Tópicos Avanzados en Comunicación de Datos|11|17|
+1083|"Introducción al Data Mining| su Aplicación a la Empresa"|10|5|
+1084|Organización e Informatización de Proyectos|15|12|
+1085|Aprendizaje Simbólico de Máquina|16|5|
+1087|Diseño de Controladores en Lógica Difusa|5|16|
+1088|Software Design Methods: UML in Action|9|12|
+1089|Herramientas para el Desarrollo de Aplicaciones en Internet: Comercio Electrónico y Computación Móvil|9|11|
+1091|Enfoques Reflexivos|9|16|
+1092|"ALU en Microprocesadores. Implementación CLD| FSM y FPGA"|14|8|
+1093|Desarrollo de Software con UML|9|12|
+1094|Taller de Linux: Programación de Drivers en RTL|2|9|
+1095|Técnicas de Lógica Difusa en Control Automático|5|16|
+1096|Agentes Inteligentes en Internet|16|17|
+1097|Integridad en Bases de Datos|10|2|
+1098|Ingeniería de Requisitos|9|12|
+1099|Tópicos Avanzados en Data Mining|10|16|
+1100|Metodologías para Desarrollo de Agentes|16|12|
+1101|Taller de UML|9|12|
+1102|Procesamiento de Imágenes II|2|5|
+1103|Sistemas de Información y Control de Marketing|15|10|
+1104|Tecnología Avanzada para el Desarrollo de Aplicaciones Distribuidas|17|9|
+1105|Métodos Relacionales para la Especificación de Software|9|10|
+1106|Introducción al Uso de VHDL en FPGAs: Entorno de Diseño ISE|2|14|
+1107|Modelado e Integración de Empresas: Principios y Aplicaciones|15|10|
+1108|Sistemas de Tiempo Real|9|2|
+1109|Introducción al Model Checking|5|1|
+1110|Ingeniería de Software de Aplicaciones Web|9|12|
+1111|Decisiones Financieras|15|1|
+1112|Evaluación de Proyectos Informáticos|15|12|
+1114|Introducción a la Teoría y Aplicaciones de Redes Neuronales Artificiales|16|5|
+1115|Análisis y Recuperación de Información|10|5|
+1116|Sistemas de Administración de Recursos Humanos|15|10|
+1117|Performance and Scalability of E-Commerce Systems|9|17|
+1118|Microcontroladores|14|8|
+1119|Agentes Personales|16|17|
+1120|Programación de Hardware: VHDL en FPGAs|2|14|
+1121|Descubrimiento de Conocimiento en Base de Datos|10|16|
+1122|Proyectos Informáticos|9|12|
+1123|Introducción a la Robótica Basada en Comportamientos|16|5|
+1124|Introduction to Answer Set Programming|5|9|
+1125|Visualización Computacional de Datos I|5|9|
+1126|Visualización Computacional de Datos II|5|9|
+1127|Fundamentos Matemáticos de la Visión 3D en Robótica|1|5|
+1128|Desarrollo de Software Orientado a Aspectos|9|12|
+1130|Software Libre - Código Abierto|9|12|7
+1131|Métodos Numéricos|1|5|
+1132|"Synthesis of Arithmetic Circuits: FPGA| ASIC and Embedded Systems"|14|2|
+1133|Advance Topics Software Architecture|9|8|
+1134|Interacción Digital entre Aplicaciones|9|11|
+1135|Introducción a las Wavelets|1|5|
+1136|Métodos Formales Livianos|9|5|
+1137|Programming Mobile Device: An Introduction|2|9|
+1138|Introducción a Grid Computing|17|5|
+1139|Current Best Practices in Software Architecture|9|12|
+1140|Introducción a las Redes Neuronales y la Neuro-Programación Dinámica|16|5|
+1141|Bioinformática: Conceptos Básicos y Metodología|5|16|
+1142|Teledetección Satelital Cuantitativa|5|1|
+1143|Visualización Computacional I|5|9|
+1144|Visualización Computacional II|5|9|
+1145|Arquitectura de Software Dirigida por Modelos|9|8|
+1146|Introducción a Human-Computer Interaction|9|5|
+1147|Técnicas y Herramientas para Modelos del Negocio|15|10|
+1149|Lenguajes de Especificación de Hardware: VHDL para principiantes|2|14|
+1150|Modelos y Simulación para la Gestión Organizacional|1|15|
+1151|"Diseño con Lógica Programable: FPGAs| Herramientas EDA y VHDL"|14|2|
+1152|Introducción a los Algoritmos de Planning|16|5|
+1153|Ingeniería del Conocimiento|16|5|
+1154|Fundamentos de Knowledge Management|15|16|
+1155|Introducción a Evolución de Sistemas de Software|9|12|
+1156|Taller en Informática de Gestión - Herramientas para la decisión y la acción|15|9|
+1157|Taller de Tiempo Real para Control Robótico|16|5|
+1158|Técnicas Avanzadas de Diseño de Sistemas Digitales|9|14|
+1160|Sistemas de Recomendación de Información|16|5|
+1161|Taller de Programación Orientada a Objetos en Java|2|9|
+1162|Taller de Sistemas de Información Geográfica|10|5|
+1163|"Síntesis de Circuitos Aritméticos| FPGA| ASIC| Sistemas Embebidos"|14|2|
+1166|Aprendizaje Colaborativo Soportado por Computadoras|16|5|
+1167|Introducción a Computación Evolutiva|16|5|
+1168|Model Checking|5|1|
+1169|Teledetección: Fundamentos y su aplicación en Sistemas de Información Geográfica (SIG)|10|1|
+1171|Gestión del Conocimiento|15|10|
+1173|Introducción a la Navegación Autónoma de Robots|16|5|
+1175|"Organización| Integridad e Informatización"|15|10|
+1176|Descubrimiento de Conocimiento a partir de Datos|16|10|
+1177|Informática Médica|5|10|
+1180|Modelado de Datos en el Mundo Real: Teoría vs. Práctica|10|9|
+1181|Técnicas de Ingeniería Inversa en el Contexto de Arquitecturas de Software Dirigidas por Modelos|9|8|
+1182|Trabajo Colaborativo soportado por Computadora|16|12|
+1183|Computación Paralela y Distribuída|17|5|
+1184|Introducción a la Optimización de Restricciones Distribuída|16|1|
+1185|Minería de Redes Sociales|16|10|
+1186|Organización y Gestión de Empresas|15||
+1187|Tópicos de Matemática Computacional|1|5|
+1192|Sistemas de Interfaz Natural|9|5|
+1193|Sistemas de Información Geográfica Open Source|10|5|
+1194|"Minería de Redes Sociales II| Análisis de Redes Sociales Dinámicas"|16|10|
+1195|Redes de Sensores|11|17|
+1197|Métodos de Desarrollo Centrados en Arquitecturas de Software|9|8|
+1198|Minería de Datos WEB|10|16|
+1203|Minería de Datos para Descubrir Modelos Causales|10|16|
+1206|Tecnologías de la Información en Salud|10|5|
+1209|Negocios con Base Tecnológica|15|10|
+1211|Taller de Programación de Videojuegos|9|2|
+1212|Desarrollo de Software Dirigido por Modelos|9|12|
+1213|Aceleración Hardware de Algoritmos|14|2|
+1215|Introducción a la Simulación de Sistemas Dinámicos|1|9|
+1217|Redes Sociales Basadas en Localización|10|16|
+1218|Informática Industrial|15|10|
+1220|Cooperativismo y Economía Social y Solidaria RCA 026/2015|15||
+1221|Minería de Datos para Descubrir Modelos Causales RCA 026/2015|10|16|
+1224|Informática Industrial RCA 026/2015|15|10|
+1225|Derecho Informático|15||
+1227|Taller de Trabajo Colaborativo|12|15|
+1228|Desarrollo de Software Dirigido por Modelos RCA 157/2015|9|12|
+1230|Taller de Desarrollo Web|9|7|
+1231|Sistemas de Personalización|10|16|
+1233|Científicos de Datos|10|16|
+1234|Introducción a la Actuación en Informática Judicial|15|5|
+1240|Taller de Programación JAVA|2|7|
+1241|Arquitecturas para Big Data|10|8|
+1242|Formulación de Proyectos y Planes Estratégicos|15|12|
+1245|Autonomía e Inteligencia Artificial|16|17|
+1246|Científicos de Datos|10|16|
+1254|Técnicas de Arquitectura de Software|9|8|
+1255|Introducción a los Fundamentos de las Criptomonedas|10|7|2
+1256|Taller de Programación de Blockchain|7|2|
+1257|Minería de Datos WEB RCA 030/2018|10|16|
+1258|Inteligencia Artificial RCA 030/2018|16|5|
+1259|Introducción a la Computación Evolutiva|16|7|
+1262|Introducción a los Sistemas Embebidos|8|2|
+1285|Inteligencia de Negocios y Ciudades Inteligentes|16|10|
+1286|Agentes Inteligentes Personales|16|17|
+1305|Sistemas de Recomendación|16|10|
+1338|#MicroDiseño: Diseño Ágil Inteligente de Software|9|12|
+1342|Computación Científica de Alto Desempeño|5|7|
+1343|Desarrollo de Habilidades no Técnicas (Transformando las Soft Skills en Power Skills)|15||
+1344|Modelling Brains|16|5|
+1345|Neuroscience of Learning Machines|16|5|
+1346|Taller de Inteligencia Artificial|16|7|
+1357|Computación Afectiva: Detección Automática de Emociones y Personalidad|16|5|
+4081|Electrónica|14||
+4097|Productos Tensoriales de Espacios Vectoriales|1||
+176|Formulación y Evaluación de Proyectos|15|1|
+1086|Cuadro de Mando Integral|15||
+1090|Taller de Sistemas Multi-Agentes|16|17|
+1113|Introducción a la Gestión del Conocimiento|15|10|
+1129|Métodos Ágiles para el Desarrollo de Software|12|9|
+1148|Taller de Ingeniería de Software|9|12|
+1159|Computación Orientada a Servicios|17|9|
+1164|Seguridad de Sistemas Informáticos|7|9|
+1165|Taller de Informática de Gestión II - Conocimiento en Acción|15|10|
+1170|Diseño de Interacción Centrado en el Usuario|9|7|
+1172|Introducción a los Algoritmos de Planeamiento|16|7|
+1174|Taller de Microcontroladores|14|8|
+1178|Inteligencia de Negocios|16|10|
+1179|Introducción a la Programación de Dispositivos Móviles|2|7|
+1191|Introducción al GPU Computing|2|5|
+1196|Fundamentos de Navegación Autónoma de Robots|16|5|
+1204|Estrategias para Mejorar la Separación de Concerns|9|7|
+1210|Control de Procesos en Tiempo-Real|7|9|
+1214|Cooperativismo y Economía Social y Solidaria|15||
+1216|Taller de Imágenes Médicas|5|2|
+1219|Arquitecturas para Computación en la Nube|8|17|
+1232|Minería de Datos con R|10|16|
+1236|Taller de Trabajo Colaborativo (RCA 198/2016)|12|15|
+1237|Derecho Informático RCA 198/2016|15||
+1243|Herramientas para la Creación de Emprendimientos Tecnológicos|15|12|
+1244|Sistemas de Recomendación|16|10|
+1260|Teoría de la Relatividad|1||
+1261|Introducción a las Redes Neuronales y Aprendizaje Profundo|16|5|
+1263|Introducción al Procesamiento Digital de Señales Aplicado al Audio Digital|5|2|
+1264|Sistemas Embebidos en Lógica Programable|14|8|
+1265|Sistemas Embebidos: Internet de las cosas|17|14|
+1266|Taller de Operaciones de Desarrollo|12|9|
+1267|Sistemas de Recomendación RCA 184/2018|16|10|
+1268|Taller de Microcontroladores RCA 184/2018|14|8|
+1269|Introducción a los Algoritmos de Planeamiento RCA 184/2018|16|7|
+1270|Estrategias para Mejorar la Separación de Concerns|9|7|
+1276|Desarrollos de Chatbots|16|7|
+1284|Aseguramiento de Calidad de Software|9|12|
+1287|Introducción a la Computación Evolutiva RCA 043/2019|16|7|
+1300|Control de Procesos en Ambientes Abiertos de Desarrollo|7|9|
+1301|Taller de Métodos Ágiles|12|9|
+1302|Tecnologías Disruptivas de la Industria 4.0|15|16|
+1303|Taller de Python y Aplicaciones|2|5|
+1304|Cuadro de Mando Integral|15||
+1312|Programación Software de FPGAs|14|2|
+1313|Taller de Python y Aplicaciones al Territorio|2|5|
+1314|Programación de Alto Rendimiento en JS|2|7|
+1315|Taller de Lenguajes de Programación|7|2|
+1316|Calidad y Certificación del Proceso del Producto de Software|9|12|
+1317|Administración de Proyectos de Software II|15|12|
+1331|Taller de Ingeniería de Software|9|12|
+1332|#MicroDiseño: Diseño Ágil Inteligente de Software|9|12|
+1333|Fundamentos en Diseño Digital sobre FPGAs|14|9|
+1334|Ciudades Inteligentes y Tecnologías Disruptivas|16|10|
+1336|Sistemas Adaptativos en Neurociencia e Inteligencia Computacional|16|5|
+1337|Ciencia de Datos para Ciudades|10|16|
+1349|Aceleración de Sistemas Mediante Lógica Programable|14|2|
+1350|Introducción al Trading Algorítmico|10|2|
+1351|Científicos de Datos|10|16|
+1352|TIPS Para Emprender - Taller de Idea Proyecto Sostenible|15||
+1353|Introducción a la Simulación de Sistemas Dinámicos|1|9|
+1354|Diseño de Sistemas Inteligentes|16|9|
+1361|Ingeniería de Software Dirigida por Modelos|9|12|
+1362|Realidad Virtual y Entornos Inmersivos en Trabajos Interdisciplinarios|16|9|
+1363|Seguridad de Sistemas Informáticos|7|9|
+1365|Evaluación de Sistemas Inteligentes|16|9|
+3044|Medios de Representación|9|5|
+4091|Introducción a la Estadística Bayesiana|1|5|
+4094|Resolución de Problemas|5|7|
+4118|Cuerpos Finitos|1||
