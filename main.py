@@ -1,3 +1,5 @@
+import pandas as pd
+
 import CSVReader as csvReader
 from Assistant import Assistant
 from openai import OpenAI
@@ -31,6 +33,37 @@ def formatear_json(input_json):
         print(f"Error al procesar el archivo JSON: {e}")
 
 
+def combinar_archivos_para_gpt(archivo_combinar):
+    """
+    Combinar un archivo de istoria academica con demás archivos necesarios para el entrenamiento de chatGPT
+
+    :param archivo_combinar: Archivo de historia academica a combinar
+    """
+    # Combino el resultado con las materias del plan 2011
+    resultado = pd.merge(archivo_combinar, archivo_plan_2011, on='materia', how='inner')
+
+    # Combino el resultado con las etiquetas de las materias del plan 2011
+    resultado_2011_etiquetado = pd.merge(resultado, archivo_plan_2011_etiquetado, on='materia', how='inner')
+    resultado_2011_etiquetado = pd.merge(resultado_2011_etiquetado, archivo_etiquetas, on='id_etiqueta', how='inner')
+
+    # Combino el resultado con las equivalencias de las materias del plan 2011
+    resultado_equivalencia = pd.merge(resultado_2011_etiquetado, archivo_equivalencias, on='materia', how='left')
+
+    # Relleno valores faltantes con 0
+    resultado_equivalencia['equivalencias_2022'] = resultado_equivalencia['equivalencias_2022'].fillna(0)
+    resultado_equivalencia['equivalencias_2022'] = resultado_equivalencia['equivalencias_2022'].astype(int)
+
+    # Combino el resultado con las materias del plan 2022 para obtener su nombre
+    resultado_equivalencia = pd.merge(resultado_equivalencia, archivo_plan_2022, left_on='equivalencias_2022',
+                                      right_on='materia', how='left')
+
+    # Selecciono que columnas quiero ver
+    resultado_final = resultado_equivalencia.drop(['carrera', 'plan', 'resultado', 'forma_aprobacion', 'nombre_materia_y',
+                                                   'materia_y', 'cuatrimestre_y', 'anio', 'horas_teoria_y',
+                                                   'horas_practica_y'], axis=1)
+
+    return resultado_final
+
 ### Archivos a utilizar
 ruta_archivo_regularidades              = f"DataSource/002_regularidades.csv"
 ruta_archivo_alumnos                    = f"DataSource/001_alumnos.csv"
@@ -58,19 +91,19 @@ equivalencias           = True   # Variable para determinar si trabajar con equi
 
 # Apertura de archivos
 # archivo_regularidades               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_regularidades, id_carrera=id_carrera, id_plan=id_plan_nuevo)
-# archivo_alumnos                     = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_alumnos, id_carrera=id_carrera, id_plan=id_plan)
-archivo_historia_academica          = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_historia_academica, id_carrera=id_carrera, id_plan=id_plan, id_alumno=id_alumno)
+archivo_alumnos                     = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_alumnos, id_carrera=id_carrera, id_plan=id_plan)
+archivo_historia_academica          = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_historia_academica, id_carrera=id_carrera, id_plan=id_plan)
 # archivo_datos_personales            = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_personales)
 # archivo_datos_laborales             = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_laborales)
 # archivo_datos_hist_personales       = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_hist_personales)
 # archivo_datos_hist_laborales        = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_hist_laborales)
-# archivo_equivalencias               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_equivalencias)
-# archivo_etiquetas                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_etiquetas)
+archivo_equivalencias               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_equivalencias)
+archivo_etiquetas                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_etiquetas)
 # archivo_optativas_etiquetado        = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_optativas_etiquetado)
-# archivo_plan_2011                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2011)
-# archivo_plan_2011_etiquetado        = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2011_etiquetado)
+archivo_plan_2011                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2011)
+archivo_plan_2011_etiquetado        = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2011_etiquetado)
 # archivo_plan_2011_precedencia       = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2011_precedencia)
-# archivo_plan_2022                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2022)
+archivo_plan_2022                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2022)
 # archivo_plan_2022_precedencia       = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_plan_2022_precedencia)
 archivo_indice_exito_academico      = open(ruta_archivo_indice_exito_academico, 'r').read()
 
@@ -78,118 +111,59 @@ archivo_indice_exito_academico      = open(ruta_archivo_indice_exito_academico, 
 
 # Comienza la implementación
 
-asistente = Assistant(
-    archivo_plan_2011='',
-    archivo_plan_2011_etiquetado='',
-    archivo_plan_2011_precedencia='',
-    archivo_plan_2022='',
-    archivo_plan_2022_precedencia='',
-    archivo_equivalencias='',
-    archivo_etiquetas='',
-    archivo_historia_academica=archivo_historia_academica,
-    archivo_indice_exito_academico=''
-    # archivo_equivalencias=archivo_equivalencias,
-    # archivo_etiquetas=archivo_etiquetas,
-    # archivo_historia_academica=archivo_historia_academica,
-    # archivo_indice_exito_academico=archivo_indice_exito_academico
-)
+archivo_historia_academica['materia'] = archivo_historia_academica['materia'].astype(int)
+archivo_plan_2011['materia'] = archivo_plan_2011['materia'].astype(int)
+archivo_equivalencias['equivalencias_2022'] = archivo_equivalencias['equivalencias_2022'].astype(int)
 
-# Fin de la implementación
+# Filtro por un alumno particular, conservando el DataFrame original
+filtrado_alumno = archivo_historia_academica[archivo_historia_academica['id_alumno'] == id_alumno]
 
-# Nombre del archivo CSV de salida
-archivo_json = "resultados.json"
+ha_particular = combinar_archivos_para_gpt(filtrado_alumno)
 
-# Procesar los archivos y generar el CSV
-asistente.procesar_archivos_y_generar_json(archivo_json, id_alumno, archivo_json)
+# Muestro solo las columnas que quiero
+# print(resultado_equivalencia[columnas_visibles])
 
-formatear_json(archivo_json)
+# Comienzo de preparación de datos para entrenamiento
+
+# Obtengo los primeros 50 alumnos para entrenar al modelo con ellos
+primeros_alumnos = archivo_alumnos.head(20)
+# Me quedo sólo con sus IDs
+primeros_alumnos = primeros_alumnos['id_alumno'].tolist()
+
+# Filtro por un conjunto de alumnos, conservando el DataFrame original
+filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academica['id_alumno'].isin(primeros_alumnos)]
+
+ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
+
+# asistente = Assistant(
+#     archivo_plan_2011='',
+#     archivo_plan_2011_etiquetado='',
+#     archivo_plan_2011_precedencia='',
+#     archivo_plan_2022='',
+#     archivo_plan_2022_precedencia='',
+#     archivo_equivalencias='',
+#     archivo_etiquetas='',
+#     archivo_historia_academica=archivo_historia_academica,
+#     archivo_indice_exito_academico=''
+#     # archivo_equivalencias=archivo_equivalencias,
+#     # archivo_etiquetas=archivo_etiquetas,
+#     # archivo_historia_academica=archivo_historia_academica,
+#     # archivo_indice_exito_academico=archivo_indice_exito_academico
+# )
+#
+# # Fin de la implementación
+#
+# # Nombre del archivo CSV de salida
+# archivo_json = "resultados.json"
+#
+# # Procesar los archivos y generar el CSV
+# asistente.procesar_archivos_y_generar_json(archivo_json, id_alumno, archivo_json)
+#
+# formatear_json(archivo_json)
 
 # #Comienzo del entrenamiento
-# chat_completion = client.chat.completions.create(
-#     messages=[
-#         {
-#             "role": "system",
-#             "content": "I will send you information about a graduate student who has completed his/her academic plan"
-#                        "under the 2011 scheme."
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the existing subjects in the Systems Engineering degree"
-#                        "program of the 2011 curriculum."
-#                        f"The information is obtained from a csv file: {archivo_plan_2011}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the existing subjects in the Systems Engineering degree"
-#                        "program of the 2022 curriculum."
-#                        f"The information is obtained from a csv file: {archivo_plan_2022}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the equivalencies of the subjects of the 2011 plan in the"
-#                        "2022 plan."
-#                        f"The information is obtained from a csv file: {archivo_equivalencias}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the labels. A label is a category that is assigned to a"
-#                        "subject or elective. This is in order to know in which category the student stands out the "
-#                        "most. When evaluating a subject taken in the 2022 plan, it is verified which"
-#                        "category/categories it belongs to and it can be known if it is one in which the student stands"
-#                        "out or not, in order to assign his/her grade."
-#                        f"The information is obtained from a csv file: {archivo_etiquetas}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the 2011 plan labeling."
-#                        f"The information is obtained from a csv file: {archivo_plan_2011_etiquetado}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the precedences required for each subject in the 2011 plan."
-#                        "The precedences are for the course (the subject cannot be taken without first taking other"
-#                        "subjects), and for the final (the subject cannot be taken without first passing the final exam"
-#                        "for other subjects). Dashes ('-') are used to separate the identifier for each subject, both"
-#                        "in precedence_course and in precedence_final."
-#                        f"The information is obtained from a csv file: {archivo_plan_2011_precedencia}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information about the precedences required for each subject in the 2022 plan."
-#                        "The precedences are for the course (the subject cannot be taken without first taking other"
-#                        "subjects), and for the final (the subject cannot be taken without first passing the final exam"
-#                        "for other subjects). Dashes ('-') are used to separate the identifier for each subject, both"
-#                        "in precedence_course and in precedence_final."
-#                        f"The information is obtained from a csv file: {archivo_plan_2022_precedencia}",
-#         },
-#         {
-#             "role": "system",
-#             "content": "I will send you information on how to calculate the academic success rate. This rate is used"
-#                        "to evaluate the student's performance throughout his/her career."
-#                        "Whenever you want to know how the index is calculated or to consult about it, refer to the"
-#                        "following file."
-#                        f"The information is obtained from a txt file: {archivo_indice_exito_academico}",
-#         },
-#         {
-#             "role": "user",
-#             "content": f"Based on the information you have for student {id_persona} in "
-#                        f"file {archivo_historia_academica}, find out what grades he or she got in each subject. Return "
-#                        f"this vector to me.",
-#         }
-#         # {
-#         #     "role": "system",
-#         #     "content": f"Based on the information you have for student {id_persona} in file {archivo_plan_2011}, find out "
-#         #                f"what grades he or she got in each subject. Then, looking at the labels for each of those "
-#         #                f"subjects (search in file {archivo_plan_2011_etiquetado}) get a vector of grade averages for each "
-#         #                f"subject. Return this vector with the average for each grade.",
-#         #                #"I need you to return the grades that the student obtains in each subject and elective that"
-#         #                #"he/she will take in the 2022 plan, an academic performance index, and the estimated time of"
-#         #                #"graduation. You must obtain the information from all the files I sent you. "
-#         # }
-#     ],
-#     model="gpt-4o",
-# )
+
 # #Fin del entrenamiento
-#
+
 # # Comienzo de la visualización de resultados
 # print(chat_completion.choices[0].message)

@@ -42,20 +42,21 @@ class Assistant:
                                "subject belongs to and returns a JSON with the category name and its average."
                                f"The information is obtained from a csv file: {self.archivo_plan_2011_etiquetado}",
                 },
-                {
-                    "role": "system",
-                    "content": f"Using the identifier of each subject in the 2011 plan, look for the equivalency"
-                               f"identifier in the {self.archivo_equivalencias} file, and then use this identifier to"
-                               f"obtain the equivalent subject in the 2022 plan in the {self.archivo_plan_2022} file."
-                               f"There may be more than one subject from the 2011 plan with the same identifier for"
-                               f"the 2022 plan. They will be separated by '-'."
-                               f"If no identifier is found, represent the subject as an empty string, and its grade"
-                               f"will be 0."
-                               f"The information is obtained from a csv file: {self.archivo_equivalencias}. ",
-                },
+                # {
+                #     "role": "system",
+                #     "content": f"Using the identifier of each subject in the 2011 plan, look for the equivalency"
+                #                f"identifier in the {self.archivo_equivalencias} file, and then use this identifier to"
+                #                f"obtain the equivalent subject in the 2022 plan in the {self.archivo_plan_2022} file."
+                #                f"There may be more than one subject from the 2011 plan with the same identifier for"
+                #                f"the 2022 plan. They will be separated by '-'."
+                #                f"If no identifier is found, represent the subject as an empty string, and its grade"
+                #                f"will be 0."
+                #                f"The information is obtained from a csv file: {self.archivo_equivalencias}. ",
+                # },
                 {
                     "role": "user",
-                    "content": f"Search for the student with id {id_persona} and also return the equivalent subject in the 2022 plan.",
+                    "content": f"Search for the student with id {id_persona} and return the categories and the subject"
+                               f"with their grades",
                 },
                 # {
                 #     "role": "system",

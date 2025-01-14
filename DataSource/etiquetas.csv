@@ -1,18 +1,18 @@
-id_etiqueta,nombre_etiqueta
-1,Matematica
-2,Programación
-3,Física
-4,Quimica
-5,Fundamentos de Informatica
-6,Teoria de la Computacion
-7,Teoria de la Programacion
-8,Arquitectura de sistemas
-9,Diseño de software
-10,Modelo de datos
-11,Teoría de la comunicación de datos
-12,Metodología de desarrollo
-13,Idiomas
-14,Electronica
-15,Teoria de las Organizaciones
-16,Inteligencia artificial
-17,Sistemas distribuidos
+id_etiqueta|nombre_etiqueta
+1|Matematica
+2|Programación
+3|Física
+4|Quimica
+5|Fundamentos de Informatica
+6|Teoria de la Computacion
+7|Teoria de la Programacion
+8|Arquitectura de sistemas
+9|Diseño de software
+10|Modelo de datos
+11|Teoría de la comunicación de datos
+12|Metodología de desarrollo
+13|Idiomas
+14|Electronica
+15|Teoria de las Organizaciones
+16|Inteligencia artificial
+17|Sistemas distribuidos
