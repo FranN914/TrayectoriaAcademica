@@ -135,21 +135,26 @@ filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academic
 
 ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
 
-# asistente = Assistant(
-#     archivo_plan_2011='',
-#     archivo_plan_2011_etiquetado='',
-#     archivo_plan_2011_precedencia='',
-#     archivo_plan_2022='',
-#     archivo_plan_2022_precedencia='',
-#     archivo_equivalencias='',
-#     archivo_etiquetas='',
-#     archivo_historia_academica=archivo_historia_academica,
-#     archivo_indice_exito_academico=''
-#     # archivo_equivalencias=archivo_equivalencias,
-#     # archivo_etiquetas=archivo_etiquetas,
-#     # archivo_historia_academica=archivo_historia_academica,
-#     # archivo_indice_exito_academico=archivo_indice_exito_academico
-# )
+asistente = Assistant(
+    archivo_plan_2011='',
+    archivo_plan_2011_etiquetado='',
+    archivo_plan_2011_precedencia='',
+    archivo_plan_2022='',
+    archivo_plan_2022_precedencia='',
+    archivo_equivalencias='',
+    archivo_etiquetas='',
+    archivo_historia_academica=archivo_historia_academica,
+    archivo_indice_exito_academico=''
+    # archivo_equivalencias=archivo_equivalencias,
+    # archivo_etiquetas=archivo_etiquetas,
+    # archivo_historia_academica=archivo_historia_academica,
+    # archivo_indice_exito_academico=archivo_indice_exito_academico
+)
+
+
+datos_proyectados = asistente.procesar_archivo_con_gpt4(ha_particular, archivo_plan_2022, ha_entrenamiento)
+
+print("Datos Proyectados:", datos_proyectados)
 #
 # # Fin de la implementación
 #
