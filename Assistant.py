@@ -1,20 +1,9 @@
 import json
 import openai
 import os
-import csv
 
 class Assistant:
-    def __init__(self, archivo_plan_2011, archivo_plan_2011_etiquetado, archivo_plan_2011_precedencia,
-                 archivo_plan_2022, archivo_plan_2022_precedencia, archivo_equivalencias, archivo_etiquetas,
-                 archivo_historia_academica, archivo_indice_exito_academico):
-        self.archivo_plan_2011 = archivo_plan_2011
-        self.archivo_plan_2011_etiquetado = archivo_plan_2011_etiquetado
-        self.archivo_plan_2011_precedencia = archivo_plan_2011_precedencia
-        self.archivo_plan_2022 = archivo_plan_2022
-        self.archivo_plan_2022_precedencia = archivo_plan_2022_precedencia
-        self.archivo_equivalencias = archivo_equivalencias
-        self.archivo_etiquetas = archivo_etiquetas
-        self.archivo_historia_academica = archivo_historia_academica
+    def __init__(self, archivo_indice_exito_academico):
         self.archivo_indice_exito_academico = archivo_indice_exito_academico
 
     def construir_prompt(self, historia_academica, plan_2022, ejemplos_entrenamiento=None):
@@ -23,7 +12,6 @@ class Assistant:
         Si no se proporcionan ejemplos de entrenamiento, se basa únicamente en reglas y heurísticas.
 
         :param historia_academica: DataFrame con el historial académico del alumno.
-        :param datos_personales: Diccionario con datos personales del alumno.
         :param plan_2022: DataFrame con la estructura del plan 2022.
         :param ejemplos_entrenamiento: Lista de ejemplos históricos para simular entrenamiento (opcional).
         :return: String con el prompt preparado.
@@ -68,7 +56,7 @@ class Assistant:
            - "analisis_academico": Una descripción detallada de los patrones académicos observados.
            - "impacto_personal": Una evaluación del impacto de los datos personales en el desempeño académico.
            - "predicciones": Una lista de objetos con el id de cada materia, la nota final, y el estado proyectado.
-           - "indice_exito": Un valor flotante que representa el éxito general del alumno.
+           - "indice_exito": Un valor flotante que representa el éxito general del alumno. Para su cálculo se deben seguir las siguientes directivas {self.archivo_indice_exito_academico}.
     
         {ejemplos_texto}
     
@@ -89,10 +77,17 @@ class Assistant:
         )
         return prompt
 
-    # Función para procesar un archivo con GPT-4
-    def procesar_archivo_con_gpt4(self, historia_academica, plan_2022,datos_entrenamiento):
+    def procesar_archivo_con_gpt4(self, historia_academica, plan_2022, datos_entrenamiento):
+        """
+        Función que se comunica con chatGPT para la construcción de la predicción de las notas y el índice académico.
 
-        prompt = self.construir_prompt(historia_academica, plan_2022,datos_entrenamiento)
+        :param historia_academica: DataFrame con el historial académico del alumno.
+        :param plan_2022: DataFrame con la estructura del plan 2022.
+        :param datos_entrenamiento: Lista de ejemplos históricos para simular entrenamiento.
+        :return: String con la predicción completa
+        """
+
+        prompt = self.construir_prompt(historia_academica, plan_2022, datos_entrenamiento)
         response = openai.chat.completions.create(
             model="gpt-4o",
             messages=[
@@ -104,13 +99,15 @@ class Assistant:
         predicciones = response.choices[0].message.content
         return predicciones
 
-
-
-
-
-
-    # Función principal para procesar múltiples archivos
     def procesar_archivos_y_generar_json(self, file_path, id_persona, output_json):
+        """
+        Realiza una prediccón utilizando chatGPT y retorna un JSON con la respuesta.
+
+        :param file_path: dirección donde se guardará el archivo
+        :param id_persona: identificador del alumno del cual se quiere realizar la predicción
+        :param output_json: archivo JSON en el cual se guardaran las respuestas
+        :return: JSON con las respuestas
+        """
         resultados = []
 
         try:

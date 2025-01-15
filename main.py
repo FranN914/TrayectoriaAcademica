@@ -1,9 +1,7 @@
 import pandas as pd
-
 import CSVReader as csvReader
-from Assistant import Assistant
-from openai import OpenAI
 import json
+from Assistant import Assistant
 
 def formatear_json(input_json):
     """
@@ -39,8 +37,14 @@ def combinar_archivos_para_gpt(archivo_combinar):
 
     :param archivo_combinar: Archivo de historia academica a combinar
     """
+    # Combino el resultado con los datos de alumno para obtener el id_persona
+    resultado_con_alumno = pd.merge(archivo_combinar, archivo_alumnos, on='id_alumno')
+
+    # Combino el resultado con los datos personales
+    resultado_datos_personales = pd.merge(resultado_con_alumno, archivo_datos_hist_personales, left_on=['id_persona', 'anio_cursada'], right_on=['id_persona', 'anio_actualizacion'], how='left')
+
     # Combino el resultado con las materias del plan 2011
-    resultado = pd.merge(archivo_combinar, archivo_plan_2011, on='materia', how='inner')
+    resultado = pd.merge(resultado_datos_personales, archivo_plan_2011, on='materia', how='inner')
 
     # Combino el resultado con las etiquetas de las materias del plan 2011
     resultado_2011_etiquetado = pd.merge(resultado, archivo_plan_2011_etiquetado, on='materia', how='inner')
@@ -57,10 +61,20 @@ def combinar_archivos_para_gpt(archivo_combinar):
     resultado_equivalencia = pd.merge(resultado_equivalencia, archivo_plan_2022, left_on='equivalencias_2022',
                                       right_on='materia', how='left')
 
+    # Reemplazo valores NaN con 0 para columna anio actualizacion, y la interpreto como int
+    resultado_equivalencia['anio_actualizacion'] = resultado_equivalencia['anio_actualizacion'].fillna(0).astype(int)
+
     # Selecciono que columnas quiero ver
-    resultado_final = resultado_equivalencia.drop(['carrera', 'plan', 'resultado', 'forma_aprobacion', 'nombre_materia_y',
+    resultado_final = resultado_equivalencia.drop(['carrera_x', 'plan_x', 'resultado', 'forma_aprobacion', 'nombre_materia_y',
                                                    'materia_y', 'cuatrimestre_y', 'anio', 'horas_teoria_y',
-                                                   'horas_practica_y'], axis=1)
+                                                   'horas_practica_y', 'id_persona', 'carrera_y', 'plan_y',
+                                                   'fecha_inscripcion', 'regular', 'calidad', 'localidad_nacimiento',
+                                                   'colegio_secundario', 'titulo_secundario', 'fecha_relevamiento',
+                                                   'situacion_padre', 'situacion_madre', 'turno_preferido', 'es_celiaco',
+                                                   'periodo_lectivo_localidad', 'periodo_lectivo_codigo_postal',
+                                                   'periodo_lectivo_calle', 'periodo_lectivo_numero',
+                                                   'procedencia_localidad', 'procedencia_codigo_postal', 'procedencia_calle',
+                                                   'procedencia_numero', 'tipo_vivienda'], axis=1)
 
     return resultado_final
 
@@ -95,7 +109,7 @@ archivo_alumnos                     = csvReader.filtrar_filas_archivo(ruta_archi
 archivo_historia_academica          = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_historia_academica, id_carrera=id_carrera, id_plan=id_plan)
 # archivo_datos_personales            = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_personales)
 # archivo_datos_laborales             = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_laborales)
-# archivo_datos_hist_personales       = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_hist_personales)
+archivo_datos_hist_personales       = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_hist_personales)
 # archivo_datos_hist_laborales        = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_hist_laborales)
 archivo_equivalencias               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_equivalencias)
 archivo_etiquetas                   = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_etiquetas)
@@ -109,21 +123,25 @@ archivo_indice_exito_academico      = open(ruta_archivo_indice_exito_academico, 
 
 ''' Implementación del modelo '''
 
-# Comienza la implementación
+# Comienzo de preparación de datos para entrenamiento
 
 archivo_historia_academica['materia'] = archivo_historia_academica['materia'].astype(int)
 archivo_plan_2011['materia'] = archivo_plan_2011['materia'].astype(int)
 archivo_equivalencias['equivalencias_2022'] = archivo_equivalencias['equivalencias_2022'].astype(int)
 
+# Convierto fechas a datetime y me quedo solo con el anio
+archivo_datos_hist_personales['fecha_actualizacion'] = pd.to_datetime(archivo_datos_hist_personales['fecha_actualizacion'])
+archivo_datos_hist_personales['anio_actualizacion'] = archivo_datos_hist_personales['fecha_actualizacion'].dt.year
+archivo_datos_hist_personales = archivo_datos_hist_personales.drop('fecha_actualizacion', axis=1)   # Elimino la columna, ya no la usamos mas
+archivo_historia_academica['fecha'] = pd.to_datetime(archivo_historia_academica['fecha'])
+archivo_historia_academica['anio_cursada'] = archivo_historia_academica['fecha'].dt.year
+
+# Elimino duplicados en datos historicos personales
+archivo_datos_hist_personales = archivo_datos_hist_personales.drop_duplicates(subset=['id_persona', 'anio_actualizacion'], keep='first')
+
 # Filtro por un alumno particular, conservando el DataFrame original
 filtrado_alumno = archivo_historia_academica[archivo_historia_academica['id_alumno'] == id_alumno]
-
 ha_particular = combinar_archivos_para_gpt(filtrado_alumno)
-
-# Muestro solo las columnas que quiero
-# print(resultado_equivalencia[columnas_visibles])
-
-# Comienzo de preparación de datos para entrenamiento
 
 # Obtengo los primeros 50 alumnos para entrenar al modelo con ellos
 primeros_alumnos = archivo_alumnos.head(20)
@@ -131,30 +149,23 @@ primeros_alumnos = archivo_alumnos.head(20)
 primeros_alumnos = primeros_alumnos['id_alumno'].tolist()
 
 # Filtro por un conjunto de alumnos, conservando el DataFrame original
-filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academica['id_alumno'].isin(primeros_alumnos)]
+# filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academica['id_alumno'].isin(primeros_alumnos)]
+# ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
 
-ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
+# Fin de preparación de datos para entrenamiento
 
-asistente = Assistant(
-    archivo_plan_2011='',
-    archivo_plan_2011_etiquetado='',
-    archivo_plan_2011_precedencia='',
-    archivo_plan_2022='',
-    archivo_plan_2022_precedencia='',
-    archivo_equivalencias='',
-    archivo_etiquetas='',
-    archivo_historia_academica=archivo_historia_academica,
-    archivo_indice_exito_academico=''
-    # archivo_equivalencias=archivo_equivalencias,
-    # archivo_etiquetas=archivo_etiquetas,
-    # archivo_historia_academica=archivo_historia_academica,
-    # archivo_indice_exito_academico=archivo_indice_exito_academico
-)
+# Comienza implementación del modelo
 
+# # Creación de instancia para la comunicación con chatGPT
+# asistente = Assistant(
+#     archivo_indice_exito_academico=''
+# )
+#
+# # Obtengo predicción utilizando chatGPT
+# datos_proyectados = asistente.procesar_archivo_con_gpt4(ha_particular, archivo_plan_2022, ha_entrenamiento)
+#
+# print("Datos Proyectados:", datos_proyectados)
 
-datos_proyectados = asistente.procesar_archivo_con_gpt4(ha_particular, archivo_plan_2022, ha_entrenamiento)
-
-print("Datos Proyectados:", datos_proyectados)
 #
 # # Fin de la implementación
 #

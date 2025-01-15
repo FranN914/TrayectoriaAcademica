@@ -10,7 +10,6 @@ i = P - U
 
 i = P - U - (T - 5)
 
-
 4- Agregamos coeficientes para ajustar la importancia de cada parámetro
 
 i = a*P - b*U - c*(T - 5)
