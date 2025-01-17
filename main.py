@@ -37,11 +37,20 @@ def combinar_archivos_para_gpt(archivo_combinar):
 
     :param archivo_combinar: Archivo de historia academica a combinar
     """
+
+
+
     # Combino el resultado con los datos de alumno para obtener el id_persona
     resultado_con_alumno = pd.merge(archivo_combinar, archivo_alumnos, on='id_alumno')
+    archivo_regularidades['materia'] = archivo_regularidades['materia'].astype(int)
+
+
+    resultado_con_alumno_materias = pd.merge(resultado_con_alumno, archivo_regularidades, on=['id_alumno','materia'])
 
     # Combino el resultado con los datos personales
-    resultado_datos_personales = pd.merge(resultado_con_alumno, archivo_datos_hist_personales, left_on=['id_persona', 'anio_cursada'], right_on=['id_persona', 'anio_actualizacion'], how='left')
+    resultado_datos_personales = pd.merge(resultado_con_alumno_materias, archivo_datos_hist_personales, left_on=['id_persona', 'anio_cursada'], right_on=['id_persona', 'anio_actualizacion'], how='left')
+
+
 
     # Combino el resultado con las materias del plan 2011
     resultado = pd.merge(resultado_datos_personales, archivo_plan_2011, on='materia', how='inner')
@@ -104,7 +113,7 @@ id_alumno               = 60451  # Alumno
 equivalencias           = True   # Variable para determinar si trabajar con equivalencias o no
 
 # Apertura de archivos
-# archivo_regularidades               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_regularidades, id_carrera=id_carrera, id_plan=id_plan_nuevo)
+archivo_regularidades               = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_regularidades, id_carrera=id_carrera, id_plan=id_plan)
 archivo_alumnos                     = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_alumnos, id_carrera=id_carrera, id_plan=id_plan)
 archivo_historia_academica          = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_historia_academica, id_carrera=id_carrera, id_plan=id_plan)
 # archivo_datos_personales            = csvReader.filtrar_filas_archivo(ruta_archivo=ruta_archivo_datos_personales)
@@ -129,6 +138,7 @@ archivo_historia_academica['materia'] = archivo_historia_academica['materia'].as
 archivo_plan_2011['materia'] = archivo_plan_2011['materia'].astype(int)
 archivo_equivalencias['equivalencias_2022'] = archivo_equivalencias['equivalencias_2022'].astype(int)
 
+
 # Convierto fechas a datetime y me quedo solo con el anio
 archivo_datos_hist_personales['fecha_actualizacion'] = pd.to_datetime(archivo_datos_hist_personales['fecha_actualizacion'])
 archivo_datos_hist_personales['anio_actualizacion'] = archivo_datos_hist_personales['fecha_actualizacion'].dt.year
@@ -143,29 +153,28 @@ archivo_datos_hist_personales = archivo_datos_hist_personales.drop_duplicates(su
 filtrado_alumno = archivo_historia_academica[archivo_historia_academica['id_alumno'] == id_alumno]
 ha_particular = combinar_archivos_para_gpt(filtrado_alumno)
 
-# Obtengo los primeros 50 alumnos para entrenar al modelo con ellos
-primeros_alumnos = archivo_alumnos.head(20)
+# Obtengo los primeros X alumnos para entrenar al modelo con ellos
+primeros_alumnos = archivo_alumnos.head(10)
 # Me quedo sólo con sus IDs
 primeros_alumnos = primeros_alumnos['id_alumno'].tolist()
 
 # Filtro por un conjunto de alumnos, conservando el DataFrame original
-# filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academica['id_alumno'].isin(primeros_alumnos)]
-# ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
+filtrado_primeros_alumnos = archivo_historia_academica[archivo_historia_academica['id_alumno'].isin(primeros_alumnos)]
+ha_entrenamiento = combinar_archivos_para_gpt(filtrado_primeros_alumnos)
 
 # Fin de preparación de datos para entrenamiento
 
 # Comienza implementación del modelo
 
 # # Creación de instancia para la comunicación con chatGPT
-# asistente = Assistant(
-#     archivo_indice_exito_academico=''
-# )
-#
-# # Obtengo predicción utilizando chatGPT
-# datos_proyectados = asistente.procesar_archivo_con_gpt4(ha_particular, archivo_plan_2022, ha_entrenamiento)
-#
-# print("Datos Proyectados:", datos_proyectados)
+asistente = Assistant(
+    archivo_indice_exito_academico=archivo_indice_exito_academico
+)
 
+# # Obtengo predicción utilizando chatGPT
+#datos_proyectados = asistente.procesar_archivo_con_gpt4(ha_particular, archivo_plan_2022, ha_entrenamiento)
+
+#print("Datos Proyectados:", datos_proyectados)
 #
 # # Fin de la implementación
 #
