@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyección Alumno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #6c757d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            max-width: 100px;
+        }
+
+        button:hover {
+            background-color: #5a6268;
+        }
+
+        #json-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #json-output.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <header>Proyección Académica</header>
+    <div class="container">
+        <div class="form-group">
+            <input id="student-id" type="number" placeholder="Ingrese identificador del alumno">
+            <div class="button-group">
+                <button onclick="sendRequest()">Proyectar</button>
+                <button onclick="resetPage()">Reiniciar</button>
+            </div>
+        </div>
+        <div id="json-output" style="display: none;"></div>
+    </div>
+
+    <script>
+        function sendRequest() {
+            const studentId = document.getElementById('student-id').value;
+            if (!studentId) {
+                alert('Por favor, ingrese un identificador válido.');
+                return;
+            }
+
+            fetch('http://localhost:5000/project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: parseInt(studentId) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const output = `
+                    Analisis: ${data}\n
+                `;
+                const jsonOutput = document.getElementById('json-output');
+                jsonOutput.textContent = output;
+                jsonOutput.style.display = 'block';
+                jsonOutput.classList.add('visible');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const jsonOutput = document.getElementById('json-output');
+                jsonOutput.textContent = 'Error al obtener los datos.';
+                jsonOutput.style.display = 'block';
+                jsonOutput.classList.add('visible');
+            });
+        }
+
+        function resetPage() {
+            document.getElementById('student-id').value = '';
+            const jsonOutput = document.getElementById('json-output');
+            jsonOutput.style.display = 'none';
+            jsonOutput.classList.remove('visible');
+        }
+    </script>
+</body>
+</html>

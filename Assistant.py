@@ -94,12 +94,6 @@ class Assistant:
         except Exception as e:
             resultados.append({"archivo": os.path.basename(file_path), "resultado": f"Error al leer el archivo: {e}"})
 
-        # # Generar el archivo CSV
-        # with open(output_csv, "w", encoding="utf-8", newline="") as csvfile:
-        #     writer = csv.DictWriter(csvfile, fieldnames=["archivo", "resultado"])
-        #     writer.writeheader()
-        #     writer.writerows(resultados)
-
         # Generar el archivo JSON
         with open(output_json, "w", encoding="utf-8") as jsonfile:
             json.dump(resultados, jsonfile, ensure_ascii=False, indent=4)
