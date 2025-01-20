@@ -51,12 +51,12 @@ class Assistant:
                        - "predicciones": Una lista de objetos con el id de cada materia, la nota final, y el estado proyectado de TODAS las materias del plan de estudio 2022 (Cantidad 37 materias).
                        - "indice_exito": Un valor flotante que representa el éxito general del alumno. Para su cálculo se deben seguir las siguientes directivas {archivo_indice_exito_academico} realizar un desgloce explicacion del proceso del calculo. El indice se compara entre su rendimiento de 2011 y el proyectado.  
                        
-                        Devuelve la respuesta en este formato JSON exacto:
-                            {
+                        Devuelve la respuesta en este formato JSON exacto siguiendo un JSON estandar (los casos donde {{ escribirlos como {):
+                            {{
                                 "analisis_academico": "Descripción del historial académico",
                                 "impacto_personal": "Evaluación del impacto de datos personales",
                                 "predicciones": [
-                                    {
+                                    {{
                                         "id_materia": int,
                                         "nota": float,
                                         "estado": "Aprobada" | "Recusada" | "Abandonada"
@@ -64,7 +64,7 @@ class Assistant:
                                 ],
                                 "indice_exito": float
                                 "desglose": "razonamiento y desglose del calculo del indice de exito academico"
-                            }
+                            }]
                     f"Antes de realizar predicciones, considera los siguientes ejemplos históricos:\n{ejemplos_entrenamiento}\n\n"
                     """.format(archivo_indice_exito_academico = self.archivo_indice_exito_academico,
                             ejemplos_entrenamiento = datos_entrenamiento)},
