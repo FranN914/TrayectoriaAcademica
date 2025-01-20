@@ -10,7 +10,7 @@ i = P - U
 
 i = P - U - (T - 5)
 
-4- Agregamos coeficientes para ajustar la importancia de cada parámetro
+4- Agregamos coeficientes para ajustar la importancia de cada parámetro para el calculo de exito academico. Los coeficientes deben sumar 1 entre ellos.
 
 i = a*P - b*U - c*(T - 5)
 

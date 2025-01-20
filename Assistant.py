@@ -49,9 +49,24 @@ class Assistant:
                        - "analisis_academico": Una descripción detallada y extensa de los patrones académicos observados.
                        - "impacto_personal": Una evaluación del impacto de los datos personales en el desempeño académico del plan de estudio 2011 y 2022
                        - "predicciones": Una lista de objetos con el id de cada materia, la nota final, y el estado proyectado de TODAS las materias del plan de estudio 2022 (Cantidad 37 materias).
-                       - "indice_exito": Un valor flotante que representa el éxito general del alumno. Para su cálculo se deben seguir las siguientes directivas {archivo_indice_exito_academico} realizar un desgloce explicacion del proceso del calculo. El indice se compara entre su rendimiento de 2011 y el proyectado.
+                       - "indice_exito": Un valor flotante que representa el éxito general del alumno. Para su cálculo se deben seguir las siguientes directivas {archivo_indice_exito_academico} realizar un desgloce explicacion del proceso del calculo. El indice se compara entre su rendimiento de 2011 y el proyectado.  
+                       
+                        Devuelve la respuesta en este formato JSON exacto:
+                            {
+                                "analisis_academico": "Descripción del historial académico",
+                                "impacto_personal": "Evaluación del impacto de datos personales",
+                                "predicciones": [
+                                    {
+                                        "id_materia": int,
+                                        "nota": float,
+                                        "estado": "Aprobada" | "Recusada" | "Abandonada"
+                                    }
+                                ],
+                                "indice_exito": float
+                                "desglose": "razonamiento y desglose del calculo del indice de exito academico"
+                            }
                     f"Antes de realizar predicciones, considera los siguientes ejemplos históricos:\n{ejemplos_entrenamiento}\n\n"
-                        """.format(archivo_indice_exito_academico = self.archivo_indice_exito_academico,
+                    """.format(archivo_indice_exito_academico = self.archivo_indice_exito_academico,
                             ejemplos_entrenamiento = datos_entrenamiento)},
 
                 {"role": "user", "content": """
