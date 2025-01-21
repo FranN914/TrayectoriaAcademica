@@ -87,6 +87,86 @@
             opacity: 1;
             transform: scale(1);
         }
+		
+		/* General container styles */
+		.academic-info {
+			margin: 20px 0;
+			padding: 15px;
+			background-color: #f8f9fa;
+			border-radius: 5px;
+		}
+
+		/* Table styles */
+		table {
+			width: 100%;
+			margin: 20px 0;
+			background-color: white;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		}
+
+		th {
+			background-color: #f0f2f5;
+			padding: 12px;
+			text-align: left;
+			font-weight: 600;
+			color: #2c3e50;
+			border-bottom: 2px solid #ddd;
+		}
+
+		td {
+			padding: 10px 12px;
+			border-bottom: 1px solid #eee;
+			color: #333;
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+		/* Headings */
+		h3 {
+			color: #2c3e50;
+			margin-bottom: 20px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #eee;
+		}
+
+		h4 {
+			color: #34495e;
+			margin: 20px 0 15px 0;
+		}
+
+		/* Success index section */
+		.success-index {
+			margin: 20px 0;
+			padding: 15px;
+			background-color: #e8f4f8;
+			border-radius: 5px;
+		}
+
+		/* Strong elements */
+		strong {
+			color: #2c3e50;
+		}
+
+		/* Responsive adjustments */
+		@media screen and (max-width: 768px) {
+			table {
+				display: block;
+				overflow-x: auto;
+			}
+			
+			th, td {
+				min-width: 120px;
+			}
+		}
+
+		/* No data message */
+		p:empty::after {
+			content: 'No disponible';
+			color: #999;
+			font-style: italic;
+		}
     </style>
 </head>
 <body>
@@ -104,39 +184,94 @@
 
     <script>
         function sendRequest() {
-            const studentId = document.getElementById('student-id').value;
-            if (!studentId) {
-                alert('Por favor, ingrese un identificador válido.');
-                return;
-            }
+			const studentId = document.getElementById('student-id').value;
+			if (!studentId) {
+				alert('Por favor, ingrese un identificador válido.');
+				return;
+			}
 
-            fetch('http://localhost:5000/project', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: parseInt(studentId) })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const output = `
-                    Analisis: ${data}\n
-                `;
-                const jsonOutput = document.getElementById('json-output');
-                jsonOutput.textContent = output;
-                jsonOutput.style.display = 'block';
-                jsonOutput.classList.add('visible');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const jsonOutput = document.getElementById('json-output');
-                jsonOutput.textContent = 'Error al obtener los datos.';
-                jsonOutput.style.display = 'block';
-                jsonOutput.classList.add('visible');
-            });
-        }
+			fetch('http://localhost:5000/project', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ id: parseInt(studentId) })
+			})
+			.then(response => response.json()) // Leer como texto en lugar de JSON
+			.then(data => {
+				const jsonOutput = document.getElementById('json-output');
 
-        function resetPage() {
+				// Validar si "predicciones" existe y es un array
+				if (Array.isArray(data.predicciones)) {
+					// Create table rows for predictions
+					const prediccionesRows = data.predicciones.map(prediccion => `
+						<tr>
+							<td>${prediccion.id_materia || 'N/A'}</td>
+							<td>${prediccion.nota || 'N/A'}</td>
+							<td>${prediccion.estado || 'N/A'}</td>
+						</tr>
+					`).join('');
+
+					// Main HTML output with table structure
+					jsonOutput.innerHTML = `
+						<h3>Análisis Académico</h3>
+						
+						<div class="academic-info">
+							<p><strong>Descripción del historial académico:</strong> ${data.analisis_academico || 'No disponible'}</p>
+							<p><strong>Impacto personal:</strong> ${data.impacto_personal || 'No disponible'}</p>
+						</div>
+
+						<h4>Predicciones:</h4>
+						<table border="1" style="width: 100%; border-collapse: collapse;">
+							<thead>
+								<tr>
+									<th>ID Materia</th>
+									<th>Nota</th>
+									<th>Estado</th>
+								</tr>
+							</thead>
+							<tbody>
+								${prediccionesRows}
+							</tbody>
+						</table>
+
+						<div class="success-index">
+							<p><strong>Índice de éxito académico:</strong> ${data.indice_exito || 'No disponible'}</p>
+							<h4>Desglose del índice de éxito académico:</h4>
+							<p>${data.desglose || 'No disponible'}</p>
+						</div>
+					`;
+				} else {
+					jsonOutput.innerHTML = `
+						<h3>Análisis Académico</h3>
+						<div class="academic-info">
+							<p><strong>Descripción del historial académico:</strong> ${data.analisis_academico || 'No disponible'}</p>
+							<p><strong>Impacto personal:</strong> ${data.impacto_personal || 'No disponible'}</p>
+						</div>
+						
+						<h4>Predicciones:</h4>
+						<p>No se encontraron predicciones.</p>
+						
+						<div class="success-index">
+							<p><strong>Índice de éxito académico:</strong> ${data.indice_exito || 'No disponible'}</p>
+							<h4>Desglose del índice de éxito académico:</h4>
+							<p>${data.desglose || 'No disponible'}</p>
+						</div>
+					`;
+				}
+				jsonOutput.style.display = 'block';
+				jsonOutput.classList.add('visible');
+			})
+			.catch(error => {
+				console.error('Error:', error);
+				const jsonOutput = document.getElementById('json-output');
+				jsonOutput.textContent = 'Error al obtener los datos.';
+				jsonOutput.style.display = 'block';
+				jsonOutput.classList.add('visible');
+			});
+		}
+
+		function resetPage() {
             document.getElementById('student-id').value = '';
             const jsonOutput = document.getElementById('json-output');
             jsonOutput.style.display = 'none';

@@ -1,6 +1,33 @@
 import json
 import openai
 import os
+from pydantic import BaseModel
+
+# {{
+#                                 "analisis_academico": "Descripción del historial académico",
+#                                 "impacto_personal": "Evaluación del impacto de datos personales",
+#                                 "predicciones": [
+#                                     {{
+#                                         "id_materia": int,
+#                                         "nota": float,
+#                                         "estado": "Aprobada" | "Recusada" | "Abandonada"
+#                                     }}
+#                                 ],
+#                                 "indice_exito": float
+#                                 "desglose": "razonamiento y desglose del calculo del indice de exito academico"
+#                             }}
+
+class Prediccion(BaseModel):
+    id_materia: int
+    nota: float
+    estado: str
+
+class Response(BaseModel):
+    analisis_academico: str
+    impacto_personal: str
+    predicciones: list[Prediccion]
+    indice_exito: float
+    desglose: str
 
 class Assistant:
     def __init__(self, archivo_indice_exito_academico):
@@ -16,7 +43,8 @@ class Assistant:
         :return: String con la predicción completa
         """
 
-        response = openai.chat.completions.create(
+        response = openai.beta.chat.completions.parse(
+            response_format=Response,
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": """
@@ -45,30 +73,16 @@ class Assistant:
                        - No simplifiques las predicciones basándote solo en una interpretación superficial.
                        - Si alguna información está incompleta, explícita los supuestos realizados para completar la predicción.
                     5. **Salida del Modelo:**
-                       Devuelve un JSON estructurado con:
+                       Devuelve unicamente el contenido de un archivo JSON estructurado con:
                        - "analisis_academico": Una descripción detallada y extensa de los patrones académicos observados.
                        - "impacto_personal": Una evaluación del impacto de los datos personales en el desempeño académico del plan de estudio 2011 y 2022
                        - "predicciones": Una lista de objetos con el id de cada materia, la nota final, y el estado proyectado de TODAS las materias del plan de estudio 2022 (Cantidad 37 materias).
                        - "indice_exito": Un valor flotante que representa el éxito general del alumno. Para su cálculo se deben seguir las siguientes directivas {archivo_indice_exito_academico} realizar un desgloce explicacion del proceso del calculo. El indice se compara entre su rendimiento de 2011 y el proyectado.  
                        
-                        Devuelve la respuesta en este formato JSON exacto siguiendo un JSON estandar (los casos donde {{ o }} escribirlos como uno solo):
-                            {{
-                                "analisis_academico": "Descripción del historial académico",
-                                "impacto_personal": "Evaluación del impacto de datos personales",
-                                "predicciones": [
-                                    {{
-                                        "id_materia": int,
-                                        "nota": float,
-                                        "estado": "Aprobada" | "Recusada" | "Abandonada"
-                                    }}
-                                ],
-                                "indice_exito": float
-                                "desglose": "razonamiento y desglose del calculo del indice de exito academico"
-                            }}]
+                    Recorda responder unicamente con el contenido del archivo JSON
                     f"Antes de realizar predicciones, considera los siguientes ejemplos históricos:\n{ejemplos_entrenamiento}\n\n"
                     """.format(archivo_indice_exito_academico = self.archivo_indice_exito_academico,
                             ejemplos_entrenamiento = datos_entrenamiento)},
-
                 {"role": "user", "content": """
                         Ahora, realiza la predicción para este alumno:
                         - **Historial académico del alumno (plan 2011):**
@@ -86,7 +100,7 @@ class Assistant:
             ]
         )
         # Convertir la respuesta de GPT-4 en un DataFrame
-        predicciones = response.choices[0].message.content
+        predicciones = response.choices[0].message.parsed
         return predicciones
 
     def procesar_archivos_y_generar_json(self, file_path, id_persona, output_json):
