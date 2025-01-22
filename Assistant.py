@@ -1,6 +1,4 @@
-import json
 import openai
-import os
 from pydantic import BaseModel
 
 class Prediccion(BaseModel):

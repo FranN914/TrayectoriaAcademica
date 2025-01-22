@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
 import main
+from pydantic import BaseModel
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 

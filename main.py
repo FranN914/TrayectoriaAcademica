@@ -1,6 +1,5 @@
 import pandas as pd
 import CSVReader as csvReader
-import json
 from Assistant import Assistant
 
 # Archivos a utilizar
@@ -22,39 +21,12 @@ ruta_archivo_plan_2022_precedencia      = f"DataSource/plan_2022_precedencia.csv
 ruta_archivo_indice_exito_academico     = f"DataSource/indice_exito_academico.txt"
 
 # Constantes
-id_carrera              = 206    # Ingenieria en Sistemas
-id_plan                 = "2011" # Plan de Estudios Viejo
-
-def formatear_json(input_json):
-    """
-    Formatea un JSON correctamente.
-
-    :param input_json: Archivo JSON de entrada (ruta).
-    """
-    try:
-        # Cargar el JSON
-        with open(input_json, "r", encoding="utf-8") as file:
-            data = json.load(file)
-
-        # Formatear contenido
-        for entry in data:
-            if "resultado" in entry and entry["resultado"].startswith("```json"):
-                # Limpiar el bloque de código encapsulado
-                json_string = entry["resultado"].strip("```json\n").strip("```")
-                entry["resultado"] = json.loads(json_string)  # Convertir el string JSON en objeto
-
-        # Guardar el JSON formateado
-        with open(input_json, "w", encoding="utf-8") as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-        print(f"JSON formateado guardado en: {input_json}")
-
-    except Exception as e:
-        print(f"Error al procesar el archivo JSON: {e}")
-
+id_carrera  = 206    # Ingenieria en Sistemas
+id_plan     = "2011" # Plan de Estudios Viejo
 
 def combinar_archivos_para_gpt(archivo_combinar, archivo_alumnos, archivo_datos_hist_personales, archivo_plan_2011,
-                               archivo_plan_2011_etiquetado, archivo_etiquetas, archivo_equivalencias, archivo_plan_2022):
+                               archivo_plan_2011_etiquetado, archivo_etiquetas, archivo_equivalencias,
+                               archivo_plan_2022):
     """
     Combinar un archivo de historia academica con demás archivos necesarios para el entrenamiento de chatGPT
 
@@ -68,29 +40,36 @@ def combinar_archivos_para_gpt(archivo_combinar, archivo_alumnos, archivo_datos_
     :param archivo_alumnos: Archivo con alumnos
     """
     # Combino el resultado con los datos de alumno para obtener el id_persona
-    resultado_con_alumno = pd.merge(archivo_combinar, archivo_alumnos, on='id_alumno')
+    resultado_con_alumno = pd.merge(archivo_combinar,
+                                    archivo_alumnos,
+                                    on='id_alumno')
 
     # Combino el resultado con los datos personales
-    resultado_datos_personales = pd.merge(resultado_con_alumno, archivo_datos_hist_personales,
+    resultado_datos_personales = pd.merge(resultado_con_alumno,
+                                          archivo_datos_hist_personales,
                                           left_on=['id_persona', 'anio_cursada'],
                                           right_on=['id_persona', 'anio_actualizacion'],
                                           how='left')
 
     # Combino el resultado con las materias del plan 2011
-    resultado = pd.merge(resultado_datos_personales, archivo_plan_2011,
+    resultado = pd.merge(resultado_datos_personales,
+                         archivo_plan_2011,
                          on='materia',
                          how='inner')
 
     # Combino el resultado con las etiquetas de las materias del plan 2011
-    resultado_2011_etiquetado = pd.merge(resultado, archivo_plan_2011_etiquetado,
+    resultado_2011_etiquetado = pd.merge(resultado,
+                                         archivo_plan_2011_etiquetado,
                                          on='materia',
                                          how='inner')
-    resultado_2011_etiquetado = pd.merge(resultado_2011_etiquetado, archivo_etiquetas,
+    resultado_2011_etiquetado = pd.merge(resultado_2011_etiquetado,
+                                         archivo_etiquetas,
                                          on='id_etiqueta',
                                          how='inner')
 
     # Combino el resultado con las equivalencias de las materias del plan 2011
-    resultado_equivalencia = pd.merge(resultado_2011_etiquetado, archivo_equivalencias,
+    resultado_equivalencia = pd.merge(resultado_2011_etiquetado,
+                                      archivo_equivalencias,
                                       on='materia',
                                       how='left')
 
@@ -99,7 +78,8 @@ def combinar_archivos_para_gpt(archivo_combinar, archivo_alumnos, archivo_datos_
     resultado_equivalencia['equivalencias_2022'] = resultado_equivalencia['equivalencias_2022'].astype(int)
 
     # Combino el resultado con las materias del plan 2022 para obtener su nombre
-    resultado_equivalencia = pd.merge(resultado_equivalencia, archivo_plan_2022,
+    resultado_equivalencia = pd.merge(resultado_equivalencia,
+                                      archivo_plan_2022,
                                       left_on='equivalencias_2022',
                                       right_on='materia',
                                       how='left')
@@ -203,9 +183,13 @@ def evaluar_prediccion(alumno):
                                                             ],
                                                            axis=1)
     filtrado_alumno_regularidades = archivo_regularidades[archivo_regularidades['id_alumno'] == alumno]
-    ta_particular = combinar_archivos_para_gpt(filtrado_alumno_regularidades, archivo_alumnos,
-                                               archivo_datos_hist_personales, archivo_plan_2011,
-                                               archivo_plan_2011_etiquetado, archivo_etiquetas, archivo_equivalencias,
+    ta_particular = combinar_archivos_para_gpt(filtrado_alumno_regularidades,
+                                               archivo_alumnos,
+                                               archivo_datos_hist_personales,
+                                               archivo_plan_2011,
+                                               archivo_plan_2011_etiquetado,
+                                               archivo_etiquetas,
+                                               archivo_equivalencias,
                                                archivo_plan_2022)
 
     # Obtengo los primeros X alumnos para entrenar al modelo con ellos
