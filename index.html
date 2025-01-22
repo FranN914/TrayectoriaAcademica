@@ -167,6 +167,99 @@
 			color: #999;
 			font-style: italic;
 		}
+
+		.data-section {
+			background-color: #ffffff;
+			border-radius: 12px;
+			box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+			padding: 20px;
+			margin: 15px 0;
+    	}
+
+		.section-title {
+			color: #2c3e50;
+			font-size: 1.4em;
+			margin-bottom: 15px;
+			padding-bottom: 8px;
+			border-bottom: 2px solid #eee;
+		}
+
+		.data-card {
+			background-color: #f8f9fa;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 10px 0;
+		}
+
+		.data-label {
+			color: #2c3e50;
+			font-weight: 600;
+			font-size: 0.95em;
+			margin-bottom: 3px;
+		}
+
+		.data-value {
+			color: #34495e;
+			line-height: 1.4;
+			margin-bottom: 8px;
+			font-size: 0.95em;
+		}
+
+		.data-value:last-child {
+			margin-bottom: 0;
+		}
+
+		/* Estilos mejorados para la tabla */
+		.prediction-table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			margin: 12px 0;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 0 8px rgba(0,0,0,0.05);
+		}
+
+		.prediction-table th {
+			background-color: #2c3e50;
+			color: white;
+			padding: 12px;
+			font-weight: 500;
+			font-size: 0.95em;
+		}
+
+		.prediction-table td {
+			padding: 10px 12px;
+			border-bottom: 1px solid #eee;
+			font-size: 0.95em;
+		}
+
+		.prediction-table tr:hover {
+			background-color: #f5f6f7;
+			transition: background-color 0.2s ease;
+		}
+
+		/* Ajustes de espaciado general */
+		.container {
+			max-width: 800px;
+			margin: 30px auto;
+		}
+
+		h4.section-title {
+			margin-top: 15px;
+			margin-bottom: 10px;
+			font-size: 1.2em;
+		}
+
+		/* Animaciones suaves */
+		.data-section {
+			transition: all 0.3s ease;
+		}
+
+		#json-output.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
     </style>
 </head>
 <body>
@@ -201,9 +294,7 @@
 			.then(data => {
 				const jsonOutput = document.getElementById('json-output');
 
-				// Validar si "predicciones" existe y es un array
 				if (Array.isArray(data.predicciones)) {
-					// Create table rows for predictions
 					const prediccionesRows = data.predicciones.map(prediccion => `
 						<tr>
 							<td>${prediccion.id_materia || 'N/A'}</td>
@@ -212,50 +303,62 @@
 						</tr>
 					`).join('');
 
-					// Main HTML output with table structure
 					jsonOutput.innerHTML = `
-						<h3>Análisis Académico</h3>
-						
-						<div class="academic-info">
-							<p><strong>Descripción del historial académico:</strong> ${data.analisis_academico || 'No disponible'}</p>
-							<p><strong>Impacto personal:</strong> ${data.impacto_personal || 'No disponible'}</p>
-						</div>
+						<div class="data-section">						
+							<div class="data-card">
+								<div class="data-label">Descripción del historial académico</div>
+								<div class="data-value">${data.analisis_academico || 'No disponible'}</div>
+								
+								<div class="data-label">Impacto personal</div>
+								<div class="data-value">${data.impacto_personal || 'No disponible'}</div>
+							</div>
 
-						<h4>Predicciones:</h4>
-						<table border="1" style="width: 100%; border-collapse: collapse;">
-							<thead>
-								<tr>
-									<th>ID Materia</th>
-									<th>Nota</th>
-									<th>Estado</th>
-								</tr>
-							</thead>
-							<tbody>
-								${prediccionesRows}
-							</tbody>
-						</table>
+							<h4 class="section-title">Predicciones</h4>
+							<table class="prediction-table">
+								<thead>
+									<tr>
+										<th>ID Materia</th>
+										<th>Nota</th>
+										<th>Estado</th>
+									</tr>
+								</thead>
+								<tbody>
+									${prediccionesRows}
+								</tbody>
+							</table>
 
-						<div class="success-index">
-							<p><strong>Índice de éxito académico:</strong> ${data.indice_exito || 'No disponible'}</p>
-							<h4>Desglose del índice de éxito académico:</h4>
-							<p>${data.desglose || 'No disponible'}</p>
+							<div class="data-card">
+								<div class="data-label">Índice de éxito académico 2011</div>
+								<div class="data-value">${data.indice_exito_2011 || 'No disponible'}</div>
+								
+								<div class="data-label">Índice de éxito académico 2022</div>
+								<div class="data-value">${data.indice_exito_2022 || 'No disponible'}</div>
+								
+								<div class="data-label">Desglose del índice de éxito académico</div>
+								<div class="data-value">${data.desglose || 'No disponible'}</div>
+							</div>
 						</div>
 					`;
 				} else {
 					jsonOutput.innerHTML = `
-						<h3>Análisis Académico</h3>
-						<div class="academic-info">
-							<p><strong>Descripción del historial académico:</strong> ${data.analisis_academico || 'No disponible'}</p>
-							<p><strong>Impacto personal:</strong> ${data.impacto_personal || 'No disponible'}</p>
-						</div>
-						
-						<h4>Predicciones:</h4>
-						<p>No se encontraron predicciones.</p>
-						
-						<div class="success-index">
-							<p><strong>Índice de éxito académico:</strong> ${data.indice_exito || 'No disponible'}</p>
-							<h4>Desglose del índice de éxito académico:</h4>
-							<p>${data.desglose || 'No disponible'}</p>
+						<div class="data-section">
+							<h3 class="section-title">Análisis Académico</h3>
+							
+							<div class="data-card">
+								<div class="data-label">Descripción del historial académico</div>
+								<div class="data-value">${data.analisis_academico || 'No disponible'}</div>
+								
+								<div class="data-label">Impacto personal</div>
+								<div class="data-value">${data.impacto_personal || 'No disponible'}</div>
+							</div>
+
+							<div class="data-card">
+								<div class="data-label">Índice de éxito académico</div>
+								<div class="data-value">${data.indice_exito || 'No disponible'}</div>
+								
+								<div class="data-label">Desglose del índice de éxito académico</div>
+								<div class="data-value">${data.desglose || 'No disponible'}</div>
+							</div>
 						</div>
 					`;
 				}
