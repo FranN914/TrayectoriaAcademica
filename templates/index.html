@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyección Alumno</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    <style>
+		body {
+            font-family: Poppins;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+			text-align: justify;
+        }
+
+        header {
+            background-color: #6c757d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            max-width: 100px;
+        }
+
+        button:hover {
+            background-color: #5a6268;
+        }
+
+        #json-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #json-output.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+		
+		/* General container styles */
+		.academic-info {
+			margin: 20px 0;
+			padding: 15px;
+			background-color: #f8f9fa;
+			border-radius: 5px;
+		}
+
+		/* Table styles */
+		table {
+			width: 100%;
+			margin: 20px 0;
+			background-color: white;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		}
+
+		th {
+			background-color: #f0f2f5;
+			padding: 12px;
+			text-align: left;
+			font-weight: 600;
+			color: #2c3e50;
+			border-bottom: 2px solid #ddd;
+		}
+
+		td {
+			padding: 10px 12px;
+			border-bottom: 1px solid #eee;
+			color: #333;
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+		/* Headings */
+		h3 {
+			color: #2c3e50;
+			margin-bottom: 20px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #eee;
+		}
+
+		h4 {
+			color: #34495e;
+			margin: 20px 0 15px 0;
+		}
+
+		/* Success index section */
+		.success-index {
+			margin: 20px 0;
+			padding: 15px;
+			background-color: #e8f4f8;
+			border-radius: 5px;
+		}
+
+		/* Strong elements */
+		strong {
+			color: #2c3e50;
+		}
+
+		/* Responsive adjustments */
+		@media screen and (max-width: 768px) {
+			table {
+				display: block;
+				overflow-x: auto;
+			}
+			
+			th, td {
+				min-width: 120px;
+			}
+		}
+
+		/* No data message */
+		p:empty::after {
+			content: 'No disponible';
+			color: #999;
+			font-style: italic;
+		}
+
+		.data-section {
+			background-color: #ffffff;
+			border-radius: 12px;
+			box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+			padding: 20px;
+			margin: 15px 0;
+    	}
+
+		.section-title {
+			color: #2c3e50;
+			font-size: 1.4em;
+			margin-bottom: 15px;
+			padding-bottom: 8px;
+			border-bottom: 2px solid #eee;
+		}
+
+		.data-card {
+			background-color: #f8f9fa;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 10px 0;
+		}
+
+		.data-label {
+			color: #2c3e50;
+			font-weight: 600;
+			font-size: 0.95em;
+			margin-bottom: 3px;
+		}
+
+		.data-value {
+			color: #34495e;
+			line-height: 1.4;
+			margin-bottom: 8px;
+			font-size: 0.95em;
+		}
+
+		.data-value:last-child {
+			margin-bottom: 0;
+		}
+
+		/* Estilos mejorados para la tabla */
+		.prediction-table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			margin: 12px 0;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 0 8px rgba(0,0,0,0.05);
+		}
+
+		.prediction-table th {
+			background-color: #2c3e50;
+			color: white;
+			padding: 12px;
+			font-weight: 500;
+			font-size: 0.95em;
+		}
+
+		.prediction-table td {
+			padding: 10px 12px;
+			border-bottom: 1px solid #eee;
+			font-size: 0.95em;
+		}
+
+		.prediction-table tr:hover {
+			background-color: #f5f6f7;
+			transition: background-color 0.2s ease;
+		}
+
+		/* Ajustes de espaciado general */
+		.container {
+			max-width: 800px;
+			margin: 30px auto;
+		}
+
+		h4.section-title {
+			margin-top: 15px;
+			margin-bottom: 10px;
+			font-size: 1.2em;
+		}
+
+		/* Animaciones suaves */
+		.data-section {
+			transition: all 0.3s ease;
+		}
+
+		#json-output.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+    </style>
+</head>
+<body>
+    <header>Proyección Académica</header>
+    <div class="container">
+        <div class="form-group">
+            <input id="student-id" type="number" placeholder="Ingrese identificador del alumno">
+            <div class="button-group">
+                <button onclick="sendRequest()">Proyectar</button>
+                <button onclick="resetPage()">Reiniciar</button>
+            </div>
+        </div>
+        <div id="json-output" style="display: none;"></div>
+    </div>
+
+    <script>
+        function sendRequest() {
+			const studentId = document.getElementById('student-id').value;
+			if (!studentId) {
+				alert('Por favor, ingrese un identificador válido.');
+				return;
+			}
+
+			fetch('http://localhost:5000/project', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ id: parseInt(studentId) })
+			})
+			.then(response => response.json()) // Leer como texto en lugar de JSON
+			.then(data => {
+				const jsonOutput = document.getElementById('json-output');
+
+				if (Array.isArray(data.predicciones)) {
+					const prediccionesRows = data.predicciones.map(prediccion => `
+						<tr>
+							<td>${prediccion.id_materia || 'N/A'}</td>
+							<td>${prediccion.nota || 'N/A'}</td>
+							<td>${prediccion.estado || 'N/A'}</td>
+						</tr>
+					`).join('');
+
+					jsonOutput.innerHTML = `
+						<div class="data-section">						
+							<div class="data-card">
+								<div class="data-label">Descripción del historial académico</div>
+								<div class="data-value">${data.analisis_academico || 'No disponible'}</div>
+								
+								<div class="data-label">Impacto personal</div>
+								<div class="data-value">${data.impacto_personal || 'No disponible'}</div>
+							</div>
+
+							<h4 class="section-title">Predicciones</h4>
+							<table class="prediction-table">
+								<thead>
+									<tr>
+										<th>ID Materia</th>
+										<th>Nota</th>
+										<th>Estado</th>
+									</tr>
+								</thead>
+								<tbody>
+									${prediccionesRows}
+								</tbody>
+							</table>
+
+							<div class="data-card">
+								<div class="data-label">Índice de éxito académico 2011</div>
+								<div class="data-value">${data.indice_exito_2011 || 'No disponible'}</div>
+								
+								<div class="data-label">Índice de éxito académico 2022</div>
+								<div class="data-value">${data.indice_exito_2022 || 'No disponible'}</div>
+								
+								<div class="data-label">Desglose del índice de éxito académico</div>
+								<div class="data-value">${data.desglose || 'No disponible'}</div>
+							</div>
+						</div>
+					`;
+				} else {
+					jsonOutput.innerHTML = `
+						<div class="data-section">
+							<h3 class="section-title">Análisis Académico</h3>
+							
+							<div class="data-card">
+								<div class="data-label">Descripción del historial académico</div>
+								<div class="data-value">${data.analisis_academico || 'No disponible'}</div>
+								
+								<div class="data-label">Impacto personal</div>
+								<div class="data-value">${data.impacto_personal || 'No disponible'}</div>
+							</div>
+
+							<div class="data-card">
+								<div class="data-label">Índice de éxito académico</div>
+								<div class="data-value">${data.indice_exito || 'No disponible'}</div>
+								
+								<div class="data-label">Desglose del índice de éxito académico</div>
+								<div class="data-value">${data.desglose || 'No disponible'}</div>
+							</div>
+						</div>
+					`;
+				}
+				jsonOutput.style.display = 'block';
+				jsonOutput.classList.add('visible');
+			})
+			.catch(error => {
+				console.error('Error:', error);
+				const jsonOutput = document.getElementById('json-output');
+				jsonOutput.textContent = 'Error al obtener los datos.';
+				jsonOutput.style.display = 'block';
+				jsonOutput.classList.add('visible');
+			});
+		}
+
+		function resetPage() {
+            document.getElementById('student-id').value = '';
+            const jsonOutput = document.getElementById('json-output');
+            jsonOutput.style.display = 'none';
+            jsonOutput.classList.remove('visible');
+        }
+    </script>
+</body>
+</html>
