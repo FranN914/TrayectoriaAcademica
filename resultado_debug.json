@@ -1,0 +1,194 @@
+{
+  "analisis_academico": "El alumno ha demostrado un buen rendimiento en muchas materias, especialmente en las áreas de Matemática, Programación y Diseño de Software, con varias calificaciones altas y promociones directas. Sin embargo, está teniendo dificultades consistentemente en materias relacionadas con idiomas y algunas correlativas de lógica y física, reflejándose en estados de abandono.",
+  "impacto_personal": "El alumno está soltero, sin hijos y cuenta con una cobertura de salud apoyada por su familia, lo que generalmente indica una estabilidad en su entorno que debería favorecer su desempeño académico. Sin embargo, el hecho de vivir solo podría influir en una menor interacción y soporte académico en términos de estudio grupal, lo cual consideramos marginal en el desempeño general.",
+  "predicciones": [
+    {
+      "id_materia": 6111,
+      "nota": 7.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6112,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6113,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6114,
+      "nota": 4.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6121,
+      "nota": 6.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6122,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6123,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6124,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6211,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6212,
+      "nota": 6.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6213,
+      "nota": 5.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6214,
+      "nota": 4.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6221,
+      "nota": 5.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6224,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6223,
+      "nota": 6.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6222,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6313,
+      "nota": 5.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6314,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6311,
+      "nota": 8.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6312,
+      "nota": 6.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6322,
+      "nota": 6.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6323,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6321,
+      "nota": 7.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6324,
+      "nota": 10.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6411,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6412,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6413,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6414,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6421,
+      "nota": 10.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6422,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6423,
+      "nota": 8.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6424,
+      "nota": 10.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6511,
+      "nota": 10.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6512,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6513,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6521,
+      "nota": 9.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6522,
+      "nota": 9.5,
+      "estado": "Aprobada"
+    }
+  ],
+  "indice_exito_2011": 7.8,
+  "indice_exito_2022": 8.4,
+  "desglose": "El cálculo del índice de éxito se basa en la combinación de notas, estados de materias y habilidades destacadas. Se ponderaron las notas más altas y las áreas fuertes del alumno, principalmente en Matemática y Programación, para realizar la proyección a 2022. Se integraron también los aspectos personales, como el entorno estable que parece favorecer su progreso académico. Un comparativo entre el plan 2011 y 2022 muestra un incremento proyectado debido a la madurez del alumno y el perfeccionamiento en áreas clave. La diferencia en los índices refleja la perspectiva de una mejora continua."
+}

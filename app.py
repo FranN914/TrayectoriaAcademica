@@ -1,7 +1,8 @@
-import main
-from pydantic import BaseModel
+import json
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
+from pydantic import BaseModel
+import main
 
 app = Flask(__name__)
 CORS(app)
@@ -10,22 +11,20 @@ CORS(app)
 def index():
     return render_template("index.html")
 
-@app.route('/project', methods=['POST'])
-def project_student():
-    data = request.get_json()
-    id_alumno = data.get('id')
-
-    if not isinstance(id_alumno, int):
-        return jsonify({"error": "El identificador debe ser un número entero."}), 400
-
+@app.route('/evaluar_prediccion')
+def evaluar():
     # Llamar a la función de predicción
-    result = main.evaluar_prediccion(id_alumno)
-
-    # Convertir el objeto Pydantic a un dict antes de retornarlo
-    if isinstance(result, BaseModel):
-        result = result.dict()
-
-    return jsonify(result)
+    id_alumno = request.args.get('id_alumno')
+    resultado = main.evaluar_prediccion(int(id_alumno))  # Se obtiene el resultado
+   
+    # Si el objeto tiene el método dict(), lo convertimos a un diccionario.
+    if hasattr(resultado, "dict"):
+        resultado = resultado.dict()
+    # Guarda el JSON en un archivo para inspección
+    with open("resultado_debug.json", "w", encoding="utf-8") as f:
+        json.dump(resultado, f, ensure_ascii=False, indent=2)
+    # Devuelve la respuesta en JSON
+    return jsonify(resultado)
 
 if __name__ == '__main__':
     app.run(debug=True)
