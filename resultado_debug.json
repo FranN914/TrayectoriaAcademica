@@ -1,35 +1,35 @@
 {
-  "analisis_academico": "El alumno ha demostrado un buen rendimiento en muchas materias, especialmente en las áreas de Matemática, Programación y Diseño de Software, con varias calificaciones altas y promociones directas. Sin embargo, está teniendo dificultades consistentemente en materias relacionadas con idiomas y algunas correlativas de lógica y física, reflejándose en estados de abandono.",
-  "impacto_personal": "El alumno está soltero, sin hijos y cuenta con una cobertura de salud apoyada por su familia, lo que generalmente indica una estabilidad en su entorno que debería favorecer su desempeño académico. Sin embargo, el hecho de vivir solo podría influir en una menor interacción y soporte académico en términos de estudio grupal, lo cual consideramos marginal en el desempeño general.",
+  "analisis_academico": "El alumno muestra un desempeño académico sobresaliente en todas las materias cursadas. Las materias con etiquetas relacionadas a Matemática, Programación y Diseño de Software tienen calificaciones superiores a 7 en general, con calificaciones especialmente altas en materias de Análisis Matematico y Diseño de Software. Hay una notable excepción en el desempeño con la materia Inglés, que fue abandonada. La gestión personal parece haber tenido un impacto mínimo en el rendimiento académico ya que el historial demuestra solidez en disciplinas clave.",
+  "impacto_personal": "El desempeño académico del alumno demuestra que, a pesar de estar soltero y vivir solo, ha sido capaz de mantener calificaciones altas. Esto sugiere una alta capacidad de autogestión y manejo de tiempo y recursos. No tener hijos o cargas familiares probablemente ha permitido al alumno concentrarse en sus estudios, lo cual se refleja en sus calificaciones.",
   "predicciones": [
     {
       "id_materia": 6111,
-      "nota": 7.5,
-      "estado": "Aprobada"
-    },
-    {
-      "id_materia": 6112,
       "nota": 8.0,
       "estado": "Aprobada"
     },
     {
+      "id_materia": 6112,
+      "nota": 8.5,
+      "estado": "Aprobada"
+    },
+    {
       "id_materia": 6113,
-      "nota": 7.0,
+      "nota": 7.5,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6114,
-      "nota": 4.0,
+      "nota": 5.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6121,
-      "nota": 6.5,
+      "nota": 7.7,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6122,
-      "nota": 7.0,
+      "nota": 8.0,
       "estado": "Aprobada"
     },
     {
@@ -44,47 +44,47 @@
     },
     {
       "id_materia": 6211,
-      "nota": 9.0,
+      "nota": 9.3,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6212,
-      "nota": 6.5,
+      "nota": 7.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6213,
-      "nota": 5.5,
-      "estado": "Aprobada"
-    },
-    {
-      "id_materia": 6214,
-      "nota": 4.0,
-      "estado": "Aprobada"
-    },
-    {
-      "id_materia": 6221,
-      "nota": 5.0,
-      "estado": "Aprobada"
-    },
-    {
-      "id_materia": 6224,
-      "nota": 7.0,
-      "estado": "Aprobada"
-    },
-    {
-      "id_materia": 6223,
       "nota": 6.5,
       "estado": "Aprobada"
     },
     {
+      "id_materia": 6214,
+      "nota": 6.0,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6221,
+      "nota": 7.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6224,
+      "nota": 7.5,
+      "estado": "Aprobada"
+    },
+    {
+      "id_materia": 6223,
+      "nota": 8.0,
+      "estado": "Aprobada"
+    },
+    {
       "id_materia": 6222,
-      "nota": 7.0,
+      "nota": 8.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6313,
-      "nota": 5.0,
+      "nota": 6.0,
       "estado": "Aprobada"
     },
     {
@@ -99,32 +99,32 @@
     },
     {
       "id_materia": 6312,
-      "nota": 6.0,
+      "nota": 7.7,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6322,
-      "nota": 6.5,
+      "nota": 6.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6323,
-      "nota": 7.0,
+      "nota": 7.5,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6321,
-      "nota": 7.0,
+      "nota": 8.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6324,
-      "nota": 10.0,
+      "nota": 8.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6411,
-      "nota": 8.0,
+      "nota": 7.0,
       "estado": "Aprobada"
     },
     {
@@ -154,12 +154,12 @@
     },
     {
       "id_materia": 6423,
-      "nota": 8.5,
+      "nota": 9.0,
       "estado": "Aprobada"
     },
     {
       "id_materia": 6424,
-      "nota": 10.0,
+      "nota": 9.5,
       "estado": "Aprobada"
     },
     {
@@ -174,7 +174,7 @@
     },
     {
       "id_materia": 6513,
-      "nota": 9.0,
+      "nota": 8.0,
       "estado": "Aprobada"
     },
     {
@@ -188,7 +188,7 @@
       "estado": "Aprobada"
     }
   ],
-  "indice_exito_2011": 7.8,
-  "indice_exito_2022": 8.4,
-  "desglose": "El cálculo del índice de éxito se basa en la combinación de notas, estados de materias y habilidades destacadas. Se ponderaron las notas más altas y las áreas fuertes del alumno, principalmente en Matemática y Programación, para realizar la proyección a 2022. Se integraron también los aspectos personales, como el entorno estable que parece favorecer su progreso académico. Un comparativo entre el plan 2011 y 2022 muestra un incremento proyectado debido a la madurez del alumno y el perfeccionamiento en áreas clave. La diferencia en los índices refleja la perspectiva de una mejora continua."
+  "indice_exito_2011": 9.0,
+  "indice_exito_2022": 8.5,
+  "desglose": "Para calcular el índice de éxito de los planes 2011 y 2022, se promediaron las calificaciones individuales obtenidas en cada materia. En el plan 2011, con un promedio sobresaliente y un enfoque especial en Matemática y Programación, se logró un índice de 9. En el plan 2022, considerando el traslado de conocimiento y rendimiento, el índice proyectado es 8.5, teniendo en cuenta el ligero descenso en desempeño en materias de Inglés y la constante en el resto de asignaturas."
 }

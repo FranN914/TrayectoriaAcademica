@@ -1,4 +1,9 @@
+import csv
+from io import StringIO
+import json
+from typing import Optional
 import pandas as pd
+from pydantic import BaseModel
 import CSVReader as csvReader
 from Assistant import Assistant
 
@@ -218,3 +223,74 @@ def evaluar_prediccion(alumno):
                                                             ta_entrenamiento)
 
     return datos_proyectados
+
+def getHistorialAcademico(alumno):
+
+    class materia(BaseModel):
+        id_materia: int
+        nota: Optional[float]
+        estado: str
+
+    class Response(BaseModel):
+        historia: list[materia]
+
+    df = csvReader.filtrar_filas_archivo(
+        ruta_archivo=ruta_archivo_regularidades,
+        id_carrera=id_carrera,
+        id_plan=id_plan,
+        id_alumno=alumno
+    )
+    df.to_csv("archivo_reg.csv", index=False)
+
+    with open("archivo_reg.csv", newline="", encoding="utf-8") as archivo:
+        lector = csv.DictReader(archivo)
+        predicciones = []
+        for fila in lector:
+
+            nota_str = fila["nota"].strip()  
+            nota_val = None if nota_str == "" else float(nota_str.replace(',', '.'))
+
+            pred = materia(
+                id_materia=int(fila["materia"]),
+                nota=nota_val,
+                estado=fila["cond_regularidad"]
+            )
+            predicciones.append(pred)
+    return Response(historia=predicciones)
+
+
+def getDatosPersonales(id_alumno):
+    id_persona = None
+    with open(ruta_archivo_alumnos, newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f, delimiter='|')
+        # Normalizamos los fieldnames: convertimos a minúsculas y quitamos espacios
+        reader.fieldnames = [campo.strip().lower() for campo in reader.fieldnames if campo is not None]
+        for row in reader:
+            # Normalizamos las claves de cada fila para evitar problemas con mayúsculas/espacios
+            fila = {k.strip().lower(): v.strip() for k, v in row.items() if v is not None}
+            # Comparamos el id_alumno (convertido a cadena) con el valor en la fila
+            if fila.get("id_alumno") == str(id_alumno):
+                print(fila)
+                id_persona = fila.get("id_persona")
+                break
+
+    filas_filtradas = []
+    with open(ruta_archivo_datos_hist_personales, newline="", encoding="utf-8") as f_hist:
+        # Leemos el CSV de datos históricos con delimitador '|'
+        lector_hist = csv.DictReader(f_hist, delimiter="|")
+        # Normalizamos los encabezados
+        lector_hist.fieldnames = [campo.strip().lower() for campo in lector_hist.fieldnames if campo is not None]
+        for fila in lector_hist:
+            fila_normalizada = {k.strip().lower(): v.strip() for k, v in fila.items() if v is not None}
+            if fila_normalizada.get("id_persona") == id_persona:
+                filas_filtradas.append(fila_normalizada)
+    filas = filas_filtradas
+    if not filas:
+        return None
+    salida = StringIO()
+    # Cambiamos el delimitador a coma para la salida
+    writer = csv.DictWriter(salida, fieldnames=filas[0].keys(), delimiter=",")
+    writer.writeheader()
+    writer.writerows(filas)
+    return salida.getvalue()
+
