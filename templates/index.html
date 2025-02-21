@@ -129,11 +129,6 @@
 				text-align: center;
 				background-color: white;
 			}
-			.table-container {
-				overflow-x: auto;
-				/* Opcionalmente, puedes establecer un ancho máximo */
-				max-width: 100%;
-			}
 		</style>
 	</head>
 	<body>
@@ -257,160 +252,95 @@
 			<p id="indice-2022">Índice de éxito 2022: [Valor]</p>
 		</section>
 
-		<!-- Datos personales del alumno -->
-		<section id="datos-personales">
-			<h2>Datos Personales del Alumno</h2>
-			<div class="table-container">
-				<table id="datos-personales-table">
-					<thead id="datos-personales-thead">
-						<!-- Se llenará dinámicamente -->
-					</thead>
-					<tbody id="datos-personales-tbody">
-						<!-- Se llenará dinámicamente -->
-					</tbody>
-				</table>
-			</div>
-		</section>
-
 		<script>
 			function sendRequest() {
+				// Obtiene el ID del alumno ingresado
 				const studentId = document.getElementById("student-id").value;
 				document.getElementById("alumno-id-placeholder").innerText =
 					studentId || "[ID ingresado por el usuario]";
 
-				// Llama al endpoint para evaluar la predicción
+				// Llama al endpoint del backend que ejecuta evaluar_prediccion(id_alumno)
 				fetch(`/evaluar_prediccion?id_alumno=${studentId}`)
 					.then((response) => {
 						if (!response.ok) {
-							throw new Error("Error en la respuesta del servidor (evaluar_prediccion)");
+							throw new Error("Error en la respuesta del servidor");
 						}
 						return response.json();
 					})
 					.then((resultado) => {
+						// Actualiza la sección "analisis-academico"
 						document.getElementById("analisis-academico-text").innerText =
 							resultado.analisis_academico;
+
+						// Actualiza la sección "impacto-vida-personal"
 						document.getElementById("impacto-vida-text").innerText = resultado.impacto_personal;
+
+						// Actualiza la tabla de "Predicciones de Notas"
+						const prediccionesTbody = document.getElementById("predicciones-tbody");
+						prediccionesTbody.innerHTML = ""; // Limpia la tabla previa
+						let sumaPredicciones = 0;
+						resultado.predicciones.forEach((prediccion) => {
+							const tr = document.createElement("tr");
+							tr.innerHTML =
+								"<td>" +
+								prediccion.id_materia +
+								"</td>" +
+								"<td>" +
+								prediccion.nota +
+								"</td>" +
+								"<td>" +
+								prediccion.estado +
+								"</td>";
+							prediccionesTbody.appendChild(tr);
+							sumaPredicciones += prediccion.nota;
+						});
+						let promedioPredicciones = resultado.predicciones.length
+							? (sumaPredicciones / resultado.predicciones.length).toFixed(2)
+							: "N/A";
+						document.getElementById("promedio-predicciones").innerText = promedioPredicciones;
+
+						// Actualiza la tabla de "Historial Académico"
+						const historialTbody = document.getElementById("historial-tbody");
+						historialTbody.innerHTML = ""; // Limpia la tabla previa
+						let sumaHistorial = 0;
+						resultado.predicciones.forEach((prediccion) => {
+							const tr = document.createElement("tr");
+							tr.innerHTML =
+								"<td>" +
+								prediccion.id_materia +
+								"</td>" +
+								"<td>" +
+								prediccion.nota +
+								"</td>" +
+								"<td>" +
+								prediccion.estado +
+								"</td>";
+							historialTbody.appendChild(tr);
+							sumaHistorial += prediccion.nota;
+						});
+						let promedioHistorial = resultado.predicciones.length
+							? (sumaHistorial / resultado.predicciones.length).toFixed(2)
+							: "N/A";
+						document.getElementById("promedio-historial").innerText = promedioHistorial;
+
+						// Actualiza la sección de "Índices Calculado"
 						document.getElementById("indice-2011").innerText =
 							"Índice de éxito 2011: " + resultado.indice_exito_2011;
 						document.getElementById("indice-2022").innerText =
 							"Índice de éxito 2022: " + resultado.indice_exito_2022;
+
+						// Actualiza la sección "Desglose"
 						document.getElementById("desglose-text").innerText = resultado.desglose;
-						if (resultado.predicciones && Array.isArray(resultado.predicciones)) {
-							const prediccionesTbody = document.getElementById("predicciones-tbody");
-							prediccionesTbody.innerHTML = "";
-							let sumaPredicciones = 0;
-							resultado.predicciones.forEach((prediccion) => {
-								const tr = document.createElement("tr");
-								tr.innerHTML =
-									"<td>" +
-									prediccion.id_materia +
-									"</td>" +
-									"<td>" +
-									prediccion.nota +
-									"</td>" +
-									"<td>" +
-									prediccion.estado +
-									"</td>";
-								prediccionesTbody.appendChild(tr);
-								sumaPredicciones += prediccion.nota;
-							});
-							let promedioPredicciones = resultado.predicciones.length
-								? (sumaPredicciones / resultado.predicciones.length).toFixed(2)
-								: "N/A";
-							document.getElementById("promedio-predicciones").innerText = promedioPredicciones;
-						}
 					})
 					.catch((error) => {
-						console.error("Error al obtener el resultado de evaluar_prediccion:", error);
-					});
-
-				// Llama al endpoint para obtener el historial académico
-				fetch(`/get_historial_academico?id_alumno=${studentId}`)
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error("Error en la respuesta del servidor (get_historial_academico)");
-						}
-						return response.json();
-					})
-					.then((data) => {
-						if (!data.historia || !Array.isArray(data.historia)) {
-							throw new Error(
-								"La propiedad 'historia' no está definida correctamente en el resultado"
-							);
-						}
-						const historialTbody = document.getElementById("historial-tbody");
-						historialTbody.innerHTML = "";
-						let sumaHistorial = 0;
-						data.historia.forEach((materia) => {
-							const tr = document.createElement("tr");
-							tr.innerHTML =
-								"<td>" +
-								materia.id_materia +
-								"</td>" +
-								"<td>" +
-								materia.nota +
-								"</td>" +
-								"<td>" +
-								materia.estado +
-								"</td>";
-							historialTbody.appendChild(tr);
-							sumaHistorial += materia.nota;
-						});
-						let promedioHistorial = data.historia.length
-							? (sumaHistorial / data.historia.length).toFixed(2)
-							: "N/A";
-						document.getElementById("promedio-historial").innerText = promedioHistorial;
-					})
-					.catch((error) => {
-						console.error("Error al obtener el historial académico:", error);
-					});
-
-				// Llama al endpoint para obtener los datos personales (CSV)
-				fetch(`/get_datos_personales?id_alumno=${studentId}`)
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error("Error en la respuesta del servidor (get_datos_personales)");
-						}
-						return response.text(); // Se asume que se devuelve CSV como texto
-					})
-					.then((csvText) => {
-						// Convertir el CSV a una tabla HTML
-						const lines = csvText.trim().split("\n");
-						if (lines.length === 0) return;
-
-						// Se asume que la primera línea es el encabezado
-						const headers = lines[0].split(",");
-						const thead = document.getElementById("datos-personales-thead");
-						thead.innerHTML = "";
-						let headerRow = "<tr>";
-						headers.forEach((header) => {
-							headerRow += "<th>" + header.trim() + "</th>";
-						});
-						headerRow += "</tr>";
-						thead.innerHTML = headerRow;
-
-						const tbody = document.getElementById("datos-personales-tbody");
-						tbody.innerHTML = "";
-						for (let i = 1; i < lines.length; i++) {
-							if (lines[i].trim() === "") continue;
-							const rowValues = lines[i].split(",");
-							let rowHtml = "<tr>";
-							rowValues.forEach((value) => {
-								rowHtml += "<td>" + value.trim() + "</td>";
-							});
-							rowHtml += "</tr>";
-							tbody.innerHTML += rowHtml;
-						}
-					})
-					.catch((error) => {
-						console.error("Error al obtener los datos personales:", error);
+						console.error("Error al obtener el resultado:", error);
 					});
 			}
 
 			// Función para reiniciar la página (limpia el campo de entrada)
 			function resetPage() {
 				document.getElementById("student-id").value = "";
-				// Puedes limpiar otras secciones si lo requieres
+				// También se pueden limpiar otras secciones si se requiere
 			}
 		</script>
 	</body>
